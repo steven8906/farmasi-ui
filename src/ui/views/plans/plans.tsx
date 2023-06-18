@@ -3,8 +3,11 @@ import visaLogo from "../../../infrastructure/assets/img/visa.png";
 import masterCardLogo from "../../../infrastructure/assets/img/master-card.png";
 import tigoMonetLogo from "../../../infrastructure/assets/img/tigo-money.png";
 import billeteraPersonalLogo from "../../../infrastructure/assets/img/billetera-personal.png";
+import {useNavigate} from "react-router-dom";
+import RoutesPath from "../../../infrastructure/router/routes-path";
 
 export default function Plans() {
+    const navigate = useNavigate();
 
     return (
         <>
@@ -38,7 +41,7 @@ export default function Plans() {
                                             especiales cambiando tu plan a uno de pago.
                                         </article>
                                         <br/>
-                                        <button className={"btn bg-white text-dark border-radius-25"}>
+                                        <button className={"btn bg-white text-dark border-radius-25"} onClick={()=> navigate(RoutesPath.JOIN_NOW)}>
                                             <span className={"font-regular text-bold font-size-22"}>¡Únete ahora!</span>
                                         </button>
                                         <br/>
@@ -79,7 +82,7 @@ export default function Plans() {
                                         <p className={"font-bold font-size-40 plans__card-winner"}>Gs. 450.000</p>
                                         <br/>
                                         <br/>
-                                        <button className={"btn bg-white text-dark border-radius-25"}>
+                                        <button className={"btn bg-white text-dark border-radius-25"} onClick={()=> navigate(RoutesPath.JOIN_NOW)}>
                                             <span className={"font-regular text-bold font-size-22"}>¡Únete ahora!</span>
                                         </button>
                                         <br/>
@@ -153,6 +156,7 @@ export default function Plans() {
                                         <br/>
                                         <br/>
                                         <button className={"btn text-dark border-radius-25"}
+                                                onClick={()=> navigate(RoutesPath.JOIN_NOW)}
                                                 style={{background: 'transparent linear-gradient(90deg, #F3CC61 0%, #FBF3C0 100%) 0% 0% no-repeat padding-box'}}>
                                             <span className={"font-regular text-bold font-size-22"}>¡Únete ahora!</span>
                                         </button>
@@ -242,8 +246,8 @@ export default function Plans() {
                     </div>
                 </div>
                 <div className={"w-60 m-auto d-block text-white d-flex flex-column align-items-center gap-5"}>
-                    <div className={"d-flex justify-content-center"}>
-                        <div className={"d-flex flex-column align-items-center gap-3 border-end pe-5"}>
+                    <div className={"row justify-content-center"}>
+                        <div className={"col-sm-12 col-md-6 d-flex flex-column align-items-center gap-3 border-end pe-5"}>
                             <div className={"d-flex justify-content-start align-items-center"}>
                                 <i className='bx bxs-check-shield'/>
                                 <span>Métodos de pagos aceptados.</span>
@@ -267,7 +271,7 @@ export default function Plans() {
                             </div>
                             <br/>
                         </div>
-                        <div className={"d-flex flex-column justify-content-center ps-5"}>
+                        <div className={"col-sm-12 col-md-6 d-flex flex-column justify-content-center ps-5"}>
                             <div className={"d-flex justify-content-start align-items-center mb-1"}>
                                 <i className='bx bxs-lock'></i>
                                 <span>Pagos seguros.</span>
@@ -277,9 +281,10 @@ export default function Plans() {
                     </div>
                     <h2 className={"font-bold"}>¿Todavía tienes dudas?</h2>
                     <div className={"border-2 px-5 border-radius-8"}>
-                        <p className={"font-size-25"}>Contáctanos: 0975123456</p>
+                        <a href={"tel:0975123456"} className={"font-size-25 text-white text-decoration-none"}>Contáctanos: 0975123456</a>
                     </div>
                 </div>
+                <br/>
                 <br/>
                 <br/>
                 <br/>

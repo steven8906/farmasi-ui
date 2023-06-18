@@ -1,7 +1,10 @@
 import "../styles/_view-plans.scss";
 import {useEffect, useId} from "react";
+import RoutesPath from "../../../../infrastructure/router/routes-path";
+import {useNavigate} from "react-router-dom";
 
 export default function ViewPlans() {
+    const navigate = useNavigate();
     const sectionID = useId();
 
     function scrollHandler(): void {
@@ -53,7 +56,9 @@ export default function ViewPlans() {
                         <p className={"font-size-22 z-1"}>¡Descubre oportunidades increíbles!</p>
                         <br/>
                         <br/>
-                        <button className={"btn btn-primary text-white font-size-20 px-5"}>Ver planes</button>
+                        <button className={"btn btn-primary text-white font-size-20 px-5"}  onClick={()=> navigate(RoutesPath.JOIN_NOW)}>
+                            Ver planes
+                        </button>
                         <div className={"view-plans__planes-container-img-2 d-sm-none d-md-block"}>
                             <img className={"w-100 d-block"}
                                  alt={""}

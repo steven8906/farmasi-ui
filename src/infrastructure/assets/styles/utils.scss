@@ -33,6 +33,10 @@
   .pt-#{$i} {
     padding-top: #{$i}px !important;
   }
+  .py-#{$i}-px {
+    padding-top    : #{$i}px !important;
+    padding-bottom : #{$i}px !important;
+  }
   .pb-#{$i}-rem {
     padding-bottom: #{$i}rem !important;
   }
