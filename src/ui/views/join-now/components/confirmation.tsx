@@ -15,11 +15,9 @@ export default function Confirmation() {
                     </p>
                 </article>
                 <br/>
-                <br/>
                 <button className={"btn btn-primary d-block m-auto text-white font-semi-bold px-5"}>
                     Iniciar sesión
                 </button>
-                <br/>
                 <br/>
                 <br/>
                 <br/>
