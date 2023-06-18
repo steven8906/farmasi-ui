@@ -1,0 +1,23 @@
+.view-plans {
+  width            : 100%;
+  background-color : #F9ECEC;
+
+  .view-plans__planes{
+    overflow-x: hidden;
+    padding: 3rem 0;
+    .view-plans__planes-container-img-1{
+      position   : absolute;
+      width      : 300px;
+      top        : -30%;
+      left       : -150px;
+      transition : .2s;
+    }
+    .view-plans__planes-container-img-2{
+      position   : absolute;
+      width      : 300px;
+      top        : -30%;
+      right      : -150px;
+      transition : .2s;
+    }
+  }
+}

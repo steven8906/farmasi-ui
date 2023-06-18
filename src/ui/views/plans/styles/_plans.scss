@@ -1,0 +1,23 @@
+.plans__main{
+  background-color: #F15C60;
+
+  .plans__card-bg-standard{
+    background: transparent linear-gradient(180deg, #F3A3A3 0%, #FF5A6800 100%) 0% 0% no-repeat padding-box;
+  }
+  .plans__card-bg-yellow{
+    background: transparent linear-gradient(180deg, #FBAF6E 0%, #FF5A6800 100%) 0% 0% no-repeat padding-box;
+  }
+
+  .plans__card{
+    border-radius: 45px 45px 0 0;
+    padding: 1rem;
+    color: white;
+
+    .plans__card-gs{
+     color: #D8D8D8;
+    }
+    .plans__card-winner{
+     color: #F3CC61;
+    }
+  }
+}

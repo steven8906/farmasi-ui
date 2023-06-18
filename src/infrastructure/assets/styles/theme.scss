@@ -1,0 +1,90 @@
+@font-face {
+  font-family: 'Montserrat-Black';
+  src: url(../fonts/Montserrat-Black.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  src: url(../fonts/Montserrat-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraLight';
+  src: url(../fonts/Montserrat-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: url(../fonts/Montserrat-Light.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: url(../fonts/Montserrat-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+  src: url(../fonts/Montserrat-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat-Thin';
+  src: url(../fonts/Montserrat-Thin.ttf);
+}
+
+/**
+---------------------------------
+| Variables de theme colors
+---------------------------------
+ */
+$primary   : #EC656C;
+$secondary : #DBDBDB;
+$dark      : #707070;
+
+@import "bootstrap";
+
+body {
+  width       : 100vw;
+  overflow-x  : hidden;
+  font-family : "Montserrat-Light", monospace;
+  color       : #656565;
+}
+p{
+  font-family : Montserrat-Regular, monospace;
+  margin      : 0 !important;
+}
+
+.font-bold{
+  font-family: Montserrat-Bold, monospace;
+}
+
+.font-semi-bold{
+  font-family: Montserrat-SemiBold, monospace;
+}
+
+.font-extra-bold{
+  font-family: Montserrat-ExtraBold, monospace;
+}
+
+.font-medium{
+  font-family: Montserrat-Medium, monospace;
+}
+
+.font-light{
+  font-family: Montserrat-Light, monospace;
+}
+
+.font-regular{
+  font-family: Montserrat-Regular, monospace;
+}

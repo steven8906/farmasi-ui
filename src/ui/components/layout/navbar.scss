@@ -1,0 +1,15 @@
+.btn__alert {
+  background-color : #EC656C;
+  padding          : 0 12px;
+  margin           : 0 !important;
+  height           : 45%;
+  color            : white;
+  text-decoration  : none;
+  border-radius    : 20px;
+  text-align: center;
+  &:hover{
+    cursor     : pointer;
+    opacity    : .8;
+    transition : .2s;
+  }
+}

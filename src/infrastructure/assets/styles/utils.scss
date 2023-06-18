@@ -1,0 +1,126 @@
+@for $i from 0 through 100 {
+  .px-#{$i} {
+    padding-left: #{$i}px !important;
+    padding-right: #{$i}px !important;
+  }
+  .py-#{$i} {
+    padding-top: #{$i}px !important;
+    padding-bottom: #{$i}px !important;
+  }
+  .pl-#{$i} {
+    padding-left: #{$i}px !important;
+  }
+  .pr-#{$i} {
+    padding-right: #{$i}px !important;
+  }
+  .px-#{$i}-rem {
+    padding-left: #{$i}-rem !important;
+    padding-right: #{$i}-rem !important;
+  }
+  .py-#{$i}-rem {
+    padding-top: #{$i}rem !important;
+    padding-bottom: #{$i}rem !important;
+  }
+  .pl-#{$i}-rem {
+    padding-left: #{$i}-rem !important;
+  }
+  .pr-#{$i}-rem {
+    padding-right: #{$i}-rem !important;
+  }
+  .pt-#{$i}-rem {
+    padding-top: #{$i}rem !important;
+  }
+  .pt-#{$i} {
+    padding-top: #{$i}px !important;
+  }
+  .pb-#{$i}-rem {
+    padding-bottom: #{$i}rem !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i}px !important;
+  }
+
+  .mx-#{$i} {
+    margin-left: #{$i}px !important;
+    margin-right: #{$i}px !important;
+  }
+
+  .mr-#{$i} {
+    margin-right: #{$i}px !important;
+  }
+
+  .ml-#{$i} {
+    margin-left: #{$i}px !important;
+  }
+
+  .mt-#{$i} {
+    margin-top: #{$i}px !important;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: #{$i}px !important;
+  }
+
+  .my-#{$i} {
+    margin-top: #{$i}px !important;
+    margin-bottom: #{$i}px !important;
+  }
+  .mx-#{$i}-rem {
+    margin-left: #{$i}rem !important;
+    margin-right: #{$i}rem !important;
+  }
+
+  .mr-#{$i}-rem {
+    margin-right: #{$i}rem !important;
+  }
+
+  .ml-#{$i}-rem {
+    margin-left: #{$i}rem !important;
+  }
+
+  .mt-#{$i}-rem {
+    margin-top: #{$i}rem !important;
+  }
+
+  .mb-#{$i}-rem {
+    margin-bottom: #{$i}rem !important;
+  }
+
+  .my-#{$i}-rem {
+    margin-top: #{$i}rem !important;
+    margin-bottom: #{$i}rem !important;
+  }
+
+  .w-#{$i} {
+    width: #{$i + '%'} !important;
+  }
+
+  .h-#{$i} {
+    width: #{$i + '%'} !important;
+  }
+
+  .w-#{$i}-px {
+    width: #{$i}px !important;
+  }
+
+  .h-#{$i}-px {
+    width: #{$i}px !important;
+  }
+
+  .font-size-#{$i}{
+    font-size: #{$i}px !important;
+  }
+
+  .font-size-#{$i}-rem{
+    font-size: #{$i}rem !important;
+  }
+  .border-radius-#{$i}{
+    border-radius: #{$i}px !important;
+  }
+}
+.text-bold{
+  font-weight: bold;
+}
+.cursor-pointer__hover:hover{
+  cursor: pointer;
+}
