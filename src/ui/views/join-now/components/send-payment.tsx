@@ -77,6 +77,10 @@ export default function SendPayment() {
                             </div>
                         </div>
                     </div>
+                    <div className={"d-flex justify-content-center my-5 gap-5"}>
+                        <button className={"btn btn-primary font-semi-bold text-white ms-3 px-5"}>Atrás</button>
+                        <button className={"btn btn-success font-semi-bold text-white ms-3 px-5"}>Siguiente</button>
+                    </div>
                 </div>
             </div>
         </>
