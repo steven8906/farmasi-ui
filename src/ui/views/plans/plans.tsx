@@ -220,45 +220,64 @@ export default function Plans() {
                     <br/>
                     <div className="d-flex justify-content-center text-white">
                         <ul className="list-unstyled list-inline">
-                            <li className="list-inline-item font-semi-bold font-size-22 ms-3">
-                                <i className='bx bx-check-circle' style={{color: '#ffc814'}}/>Nuevos desafíos todos los
-                                meses.
+                            <li className="list-inline-item font-semi-bold font-size-22 ms-5">
+                                <div className={"d-flex align-items-center gap-2"}>
+                                    <i className='bx bxs-check-circle font-size-24' style={{color: '#ffc814'}}/>
+                                    <p>Nuevos desafíos todos los meses.</p>
+                                </div>
                             </li>
-                            <li className="list-inline-item font-semi-bold font-size-22 ms-3">
-                                <i className='bx bx-check-circle' style={{color: '#ffc814'}}/>Crecimiento asegurado.
+                            <li className="list-inline-item font-semi-bold font-size-22 ms-5">
+                                <div className={"d-flex align-items-center gap-2"}>
+                                    <i className='bx bxs-check-circle font-size-24' style={{color: '#ffc814'}}/>
+                                    <p>Crecimiento asegurado.</p>
+                                </div>
                             </li>
-                            <li className="list-inline-item font-semi-bold font-size-22 ms-3">
-                                <i className='bx bx-check-circle' style={{color: '#ffc814'}}/>Entrega rápida y segura.
+                            <li className="list-inline-item font-semi-bold font-size-22 ms-5">
+                                <div className={"d-flex align-items-center gap-2"}>
+                                    <i className='bx bxs-check-circle font-size-24' style={{color: '#ffc814'}}/>
+                                    <p>Entrega rápida y segura.</p>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div className={"w-60 m-auto d-block text-white"}>
-                    <div className={"d-flex"}>
-                        <div className={"d-flex flex-column align-items-center gap-3"}>
+                <div className={"w-60 m-auto d-block text-white d-flex flex-column align-items-center gap-5"}>
+                    <div className={"d-flex justify-content-center"}>
+                        <div className={"d-flex flex-column align-items-center gap-3 border-end pe-5"}>
                             <div className={"d-flex justify-content-start align-items-center"}>
                                 <i className='bx bxs-check-shield'/>
                                 <span>Métodos de pagos aceptados.</span>
                             </div>
                             <div className={"d-flex gap-3"}>
                                 <div className={"bg-white border-radius-2 px-3 py-1"}>
-                                    <img alt={"visa"} src={visaLogo} width={40} />
+                                    <img alt={"visa"} src={visaLogo} width={40}/>
                                 </div>
                                 <div className={"bg-white border-radius-2 px-3 py-1"}>
-                                    <img alt={"master-visa"} src={masterCardLogo} width={40} />
+                                    <img alt={"master-visa"} src={masterCardLogo} width={40}/>
                                 </div>
                                 <div className={"bg-white border-radius-2 px-3 py-1 text-black"}>
                                     <p className={"font-size-8"}>Transferencia <br/>Bancaria</p>
                                 </div>
                                 <div className={"bg-white border-radius-2 px-3 py-1"}>
-                                    <img alt={"tigo-money"} src={tigoMonetLogo} width={40} />
+                                    <img alt={"tigo-money"} src={tigoMonetLogo} width={40}/>
                                 </div>
                                 <div className={"bg-white border-radius-2 px-3 py-1"}>
-                                    <img alt={"billetera-personalñ"} src={billeteraPersonalLogo} width={40} />
+                                    <img alt={"billetera-personalñ"} src={billeteraPersonalLogo} width={40}/>
                                 </div>
                             </div>
+                            <br/>
                         </div>
-                        <div className={"d-flex flex-column"}></div>
+                        <div className={"d-flex flex-column justify-content-center ps-5"}>
+                            <div className={"d-flex justify-content-start align-items-center mb-1"}>
+                                <i className='bx bxs-lock'></i>
+                                <span>Pagos seguros.</span>
+                            </div>
+                            <p>Las transacciones están encriptadas y son seguras.</p>
+                        </div>
+                    </div>
+                    <h2 className={"font-bold"}>¿Todavía tienes dudas?</h2>
+                    <div className={"border-2 px-5 border-radius-8"}>
+                        <p className={"font-size-25"}>Contáctanos: 0975123456</p>
                     </div>
                 </div>
                 <br/>

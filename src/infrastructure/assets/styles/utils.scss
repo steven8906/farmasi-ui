@@ -117,10 +117,19 @@
   .border-radius-#{$i}{
     border-radius: #{$i}px !important;
   }
+  .border-#{$i}{
+    border: #{$i}px solid white !important;
+  }
 }
 .text-bold{
   font-weight: bold;
 }
 .cursor-pointer__hover:hover{
   cursor: pointer;
+}
+.border-white{
+  border-color: white;
+}
+.border-primary{
+  border-color: #EC656C;
 }
