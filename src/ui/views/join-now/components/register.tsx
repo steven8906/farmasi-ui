@@ -1,7 +1,6 @@
 import {Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import "../syles/_join-now.scss";
-import {DateCalendar, DateField, DatePicker, LocalizationProvider, MobileDatePicker} from "@mui/x-date-pickers";
-import dayjs from "dayjs";
+import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function Register() {
