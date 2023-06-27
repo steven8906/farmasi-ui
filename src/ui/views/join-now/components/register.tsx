@@ -1,9 +1,11 @@
 import {Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField} from "@mui/material";
-import "../syles/_join-now.scss";
+import "../styles/_join-now.scss";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import useJoinNowContext from "../use-cases/useJoinNowContext";
 
 export default function Register() {
+    const {step, setStep} = useJoinNowContext();
 
     return (
         <>
@@ -106,6 +108,10 @@ export default function Register() {
                         }
                         label="He leído y estoy de acuerdo con los términos para el uso de registros electrónicos, acuerdo de Farmasi , los Términos de Uso, y Policias y procedimientos , y tengo más de 18 años."
                     />
+                </div>
+                <span className={"col-sm-12"}/>
+                <div className={"col-sm-12 col-md-8 col-lg-4 mt-5 m-auto text-center"}>
+                    <button className={"btn btn-primary text-white w-100"} onClick={()=> setStep(2)}>CREAR</button>
                 </div>
             </div>
         </>

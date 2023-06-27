@@ -1,6 +1,6 @@
 import visaLogo from "../../../../infrastructure/assets/img/visa.png";
 import masterCardLogo from "../../../../infrastructure/assets/img/master-card.png";
-import "../syles/_join-now.scss";
+import "../styles/_join-now.scss";
 
 export default function SendPayment() {
 

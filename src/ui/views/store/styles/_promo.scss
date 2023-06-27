@@ -1,0 +1,23 @@
+.promo__main{
+  border-radius : 10px;
+  background   : rebeccapurple;
+  overflow     : hidden;
+  height       : 140px;
+
+  .promo__main-content{
+    background-image    : url("../../../../infrastructure/assets/img/promo.png");
+    background-repeat   : no-repeat;
+    background-position : center;
+    background-size     : cover;
+    transition          : .2s;
+
+    &:hover{
+      transform: scale(1.1);
+      transition : .3s;
+    }
+  }
+
+  .off{
+    color: #F2E7B4;
+  }
+}

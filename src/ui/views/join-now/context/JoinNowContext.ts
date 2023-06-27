@@ -1,5 +1,4 @@
 import {createContext, Dispatch, SetStateAction} from "react";
-import React from "react/ts5.0";
 
 interface JoinNowContextModel {
     step    : number;
