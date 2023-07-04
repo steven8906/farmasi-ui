@@ -41,7 +41,7 @@ export default function NavbarLogged() {
                                 <i className='bx bx-search-alt'/>
                             </span>
                     </div>
-                    <a className={"font-size-16 btn__alert px-5"}  onClick={()=> navigate(RoutesPath.PLANS)}>Tienda</a>
+                    <a className={"font-size-16 btn__alert px-5"}  onClick={()=> navigate(RoutesPath.SHOP)}>Tienda</a>
                     <button className={"btn font-size-16"}>
                         <i className='bx bx-shopping-bag font-size-25 me-3 align-middle' style={{color:'gray'}}/>
                         <span className={"align-middle"}>Yoli Caballero</span>

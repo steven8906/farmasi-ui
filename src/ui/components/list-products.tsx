@@ -1,5 +1,5 @@
-import CardProduct from "../../../components/card-product";
-import ProductModel from "../../../../data/product-model";
+import CardProduct from "./card-product";
+import ProductModel from "../../data/models/product-model";
 
 interface Props {
     title : string;

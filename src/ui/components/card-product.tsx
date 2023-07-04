@@ -1,4 +1,4 @@
-import ProductModel from "../../data/product-model";
+import ProductModel from "../../data/models/product-model";
 import {currencyFormatter} from "../../cross-cutting/utils";
 
 export default function CardProduct({imgPath, name, currentValue, beforeValue}: Partial<ProductModel>) {

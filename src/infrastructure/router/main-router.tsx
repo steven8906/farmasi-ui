@@ -7,6 +7,7 @@ import JoinNow from "../../ui/views/join-now/join-now";
 import Login from "../../ui/views/login/login";
 import Store from "../../ui/views/store/store";
 import LayoutLogged from "../../ui/components/layout/layout-logged";
+import Shop from "../../ui/views/shop/shop";
 
 export default function MainRouter() {
 
@@ -18,6 +19,7 @@ export default function MainRouter() {
                     <Route path={routesPath.PLANS} element={<Layout><Plans/></Layout>}/>
                     <Route path={routesPath.JOIN_NOW} element={<Layout><JoinNow/></Layout>}/>
                     <Route path={routesPath.STORE} element={<LayoutLogged><Store/></LayoutLogged>}/>
+                    <Route path={routesPath.SHOP} element={<LayoutLogged><Shop/></LayoutLogged>}/>
                 </Routes>
                 <Routes>
                     <Route path={routesPath.LOGIN} element={<Login/>}/>

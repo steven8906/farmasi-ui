@@ -4,6 +4,7 @@ enum RoutesPath {
     JOIN_NOW = '/unete-ahora',
     LOGIN    = '/login',
     STORE    = '/tienda',
+    SHOP     = '/comercio',
 }
 
 export default RoutesPath;
