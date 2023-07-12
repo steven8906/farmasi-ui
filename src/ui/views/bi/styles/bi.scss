@@ -1,0 +1,18 @@
+.photo{
+  overflow      : hidden;
+  width         : 120px;
+  height        : 120px;
+  border-radius : 60px;
+  border        : 8px solid #FF5A68;
+
+  @media (max-width:1000px){
+    width         : 160px;
+    height        : 160px;
+    border-radius : 80px;
+  }
+
+  img {
+    display : block;
+    width   : 100%;
+  }
+}

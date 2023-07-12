@@ -6,24 +6,25 @@ import Plans from "../../ui/views/plans/plans";
 import JoinNow from "../../ui/views/join-now/join-now";
 import Login from "../../ui/views/login/login";
 import Store from "../../ui/views/store/store";
-import LayoutLogged from "../../ui/components/layout/layout-logged";
 import Shop from "../../ui/views/shop/shop";
+import Bi from "../../ui/views/bi/bi";
 
 export default function MainRouter() {
 
     return (
         <>
             <HashRouter>
-                <Routes>
-                    <Route path={routesPath.HOME} element={<Layout><Home/></Layout>}/>
-                    <Route path={routesPath.PLANS} element={<Layout><Plans/></Layout>}/>
-                    <Route path={routesPath.JOIN_NOW} element={<Layout><JoinNow/></Layout>}/>
-                    <Route path={routesPath.STORE} element={<LayoutLogged><Store/></LayoutLogged>}/>
-                    <Route path={routesPath.SHOP} element={<LayoutLogged><Shop/></LayoutLogged>}/>
-                </Routes>
-                <Routes>
-                    <Route path={routesPath.LOGIN} element={<Login/>}/>
-                </Routes>
+                    <Routes>
+                        <Route path={routesPath.HOME} element={<Layout><Home/></Layout>}/>
+                        <Route path={routesPath.PLANS} element={<Layout><Plans/></Layout>}/>
+                        <Route path={routesPath.JOIN_NOW} element={<Layout><JoinNow/></Layout>}/>
+                        <Route path={routesPath.STORE} element={<Layout isLogged={true}><Store/></Layout>}/>
+                        <Route path={routesPath.SHOP} element={<Layout isLogged={true}><Shop/></Layout>}/>
+                        <Route path={routesPath.BI} element={<Layout><Bi/></Layout>}/>
+                    </Routes>
+                    <Routes>
+                        <Route path={routesPath.LOGIN} element={<Login/>}/>
+                    </Routes>
             </HashRouter>
         </>
     )

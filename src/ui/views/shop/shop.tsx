@@ -1,9 +1,10 @@
 import ListProducts from "../../components/list-products";
-import data from "../../../data/repository/products";
 import useShop from "./use-cases/useShop";
+import useAppContext from "../../../application/use-cases/use-app-context";
 
 export default function Shop(){
     const {sectionShop, setSectionShop} = useShop();
+    const {productList}                 = useAppContext();
 
     return <>
         <div className={"d-flex justify-content-center align-items-center gap-3"}>
@@ -29,7 +30,10 @@ export default function Shop(){
         </div>
         <section className={"bg-primary-light"}>
             <div className={"container pt-5"}>
-                <ListProducts title={"Maquillajes"} data={[...data, ...data, ...data]}/>
+                { sectionShop === 'MAQUILLAJE' && <ListProducts title={"Maquillajes"} data={[...productList]}/>}
+                { sectionShop === 'FRAGANCIAS' && <ListProducts title={"Fragancias"} data={[...productList, ...productList, ...productList]}/>}
+                { sectionShop === 'CUIDADO_PIEL' && <ListProducts title={"Cuidado de la piel"} data={[...productList, ...productList, ...productList]}/>}
+                { sectionShop === 'MERCH' && <ListProducts title={"Merch"} data={[...productList, ...productList, ...productList]}/>}
             </div>
         </section>
     </>

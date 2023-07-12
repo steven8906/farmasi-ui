@@ -7,6 +7,7 @@ const data: ProductModel[] = [
     {imgPath: KitTwo, name: 'Polvo Matte - 10 Gr', currentValue: 20000, beforeValue: null},
     {imgPath: KitTwo, name: 'Delineador Express - 5 Gr', currentValue: 27000, beforeValue: 35000},
     {imgPath: KitTwo, name: 'Color Control - 4ml', currentValue: 18000, beforeValue: 35000},
+    {imgPath: KitTwo, name: 'Color Control - 4ml2', currentValue: 18000, beforeValue: 35000},
 ]
 
 export default data;
