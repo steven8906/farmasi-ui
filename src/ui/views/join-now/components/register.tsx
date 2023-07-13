@@ -2,16 +2,13 @@ import {Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, T
 import "../styles/_join-now.scss";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import useJoinNowContext from "../use-cases/useJoinNowContext";
 import useRegister from "../use-cases/use-register";
 import {departments, municipalities} from "../../../../data/repository/location";
-import {FormEvent} from "react";
-import data from "../../../../data/repository/products";
+import formMessages from "../../../../cross-cutting/form-messages";
 
 export default function Register() {
-    const {step, setStep}                           = useJoinNowContext();
     const {formRegisterState, setDataForm, setDate, onSubmit} = useRegister();
-    const defaultValue                              = "" as never;
+    const defaultValue   = "" as never;
 
     return (
         <>
@@ -25,7 +22,7 @@ export default function Register() {
                                 required={true}
                                 name={"department"}
                                 label="Selecciona tu departamento"
-                                defaultValue={defaultValue}
+                                value={formRegisterState.department as never ?? defaultValue}
                                 onChange={setDataForm}>
                                 {departments.map((x, index) =>
                                     <MenuItem value={x}
@@ -42,7 +39,7 @@ export default function Register() {
                                 required={true}
                                 name={"city"}
                                 label="Selecciona tu ciudad"
-                                defaultValue={defaultValue}
+                                value={formRegisterState.city as never ?? defaultValue}
                                 onChange={setDataForm}>
                                 {municipalities.find(x => x.department === formRegisterState.department)
                                     ?.cities
@@ -61,14 +58,13 @@ export default function Register() {
                                        label="Nombre"
                                        name={"name"}
                                        required={true}
-                                       required={true}
-                                       defaultValue={""}/>
+                                       value={formRegisterState.name ?? defaultValue}/>
                             <TextField className={"w-50"}
                                        onChange={setDataForm}
                                        label="Apellido"
                                        name={"lastName"}
                                        required={true}
-                                       defaultValue=""/>
+                                       value={formRegisterState.lastName ?? defaultValue}/>
                         </div>
                     </div>
                     <div className={"col-sm-12"}>&nbsp;</div>
@@ -79,7 +75,7 @@ export default function Register() {
                                    label="Número de cédula"
                                    name={"identification"}
                                    required={true}
-                                   value={formRegisterState.identification ?? ""}/>
+                                   value={formRegisterState.identification ?? defaultValue}/>
                     </div>
                     <div className={"col-sm-12"}>&nbsp;</div>
                     <div className={"col-sm-12 col-md-8 col-lg-4 m-auto"}>
@@ -89,7 +85,7 @@ export default function Register() {
                                    onChange={setDataForm}
                                    label="Correo electrónico"
                                    required={true}
-                                   defaultValue=""/>
+                                   value={formRegisterState.email ?? defaultValue} />
                     </div>
                     <div className={"col-sm-12"}>&nbsp;</div>
                     <div className={"col-sm-12 col-md-8 col-lg-4 m-auto"}>
@@ -100,14 +96,14 @@ export default function Register() {
                                        name={"password"}
                                        onChange={setDataForm}
                                        label="Contraseña"
-                                       defaultValue=""/>
+                                       value={formRegisterState.password ?? defaultValue}/>
                             <TextField className={"w-50"}
                                        type={"password"}
                                 required={true}
                                        name={"password_two"}
                                        onChange={setDataForm}
                                        label="Confirmar contraseña"
-                                       defaultValue=""/>
+                                       value={formRegisterState.password_two ?? defaultValue}/>
                         </div>
                     </div>
                     <div className={"col-sm-12"}>&nbsp;</div>
@@ -116,6 +112,7 @@ export default function Register() {
                             <div className={"w-50"}>
                                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                                     <DatePicker label="Fecha de nacimiento"
+                                                value={formRegisterState.date as never ?? defaultValue}
                                                 onChange={setDate}/>
                                 </LocalizationProvider>
                             </div>
@@ -123,7 +120,7 @@ export default function Register() {
                                 <FormControl fullWidth>
                                     <InputLabel>Género</InputLabel>
                                     <Select
-                                        defaultValue={defaultValue}
+                                        value={formRegisterState.gender as never ?? defaultValue}
                                         label="Género"
                                         name={"gender"}
                                         required={true}
@@ -147,7 +144,7 @@ export default function Register() {
                             name={"phone"}
                             required={true}
                             onChange={setDataForm}
-                            value={formRegisterState.phone ?? ""}
+                            value={formRegisterState.phone ?? defaultValue}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -157,13 +154,12 @@ export default function Register() {
                     <div className={"col-sm-12 col-md-8 col-lg-4 m-auto"}>
                         <FormControlLabel
                             className={"text-black-50"}
+                            label={formMessages.agree}
                             control={
                                 <Checkbox onChange={setDataForm}
                                           name={"agree"}
                                           required={true}
-                                          value={formRegisterState.agree}/>
-                            }
-                            label="He leído y estoy de acuerdo con los términos para el uso de registros electrónicos, acuerdo de Farmasi , los Términos de Uso, y Policias y procedimientos , y tengo más de 18 años."
+                                          checked={formRegisterState.agree as boolean ?? false}/>}
                         />
                     </div>
                     <span className={"col-sm-12"}/>

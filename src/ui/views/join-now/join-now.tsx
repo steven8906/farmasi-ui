@@ -7,11 +7,11 @@ import SendPayment from "./components/send-payment";
 import Confirmation from "./components/confirmation";
 
 export default function JoinNow() {
-    const {step, setStep} = useJoinNow();
+    const {step, formRegister, setStep, setFormRegister} = useJoinNow();
 
     return (
         <>
-            <JoinNowContext.Provider value={{step, setStep}}>
+            <JoinNowContext.Provider value={{step, formRegister, setStep, setFormRegister}}>
                 <section className={"bg-primary-light"}>
                     <Stepper/>
                     <div className={"w-90 m-auto"}>

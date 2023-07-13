@@ -8,6 +8,7 @@ export default function Stepper() {
             <div className={"container py-5 d-flex justify-content-center gap-1"}>
                 <div className={"text-center pe-2"}>
                     <button className={`btn ${step === 1 ? 'bg-primary' : 'btn-outline-primary'} btn-circle-xl`}
+                            disabled={step <= 1}
                             onClick={() => setStep(1)}>
                         <span className={`${step === 1 ? 'text-white' : 'text-primary'} font-bold`}>1</span>
                     </button>
@@ -19,6 +20,7 @@ export default function Stepper() {
                 </div>
                 <div className={"text-center"}>
                     <button className={`btn ${step === 2 ? 'bg-primary' : 'btn-outline-primary'} btn-circle-xl`}
+                            disabled={step <= 2}
                             onClick={() => setStep(2)}>
                         <span className={`${step === 2 ? 'text-white' : 'text-primary'} font-bold`}>2</span>
                     </button>
@@ -30,6 +32,7 @@ export default function Stepper() {
                 </div>
                 <div className={"text-center"}>
                     <button className={`btn ${step === 3 ? 'bg-primary' : 'btn-outline-primary'} btn-circle-xl`}
+                            disabled={step <= 3}
                             onClick={() => setStep(3)}>
                         <span className={`${step === 3 ? 'text-white' : 'text-primary'} font-bold`}>3</span>
                     </button>
@@ -41,6 +44,7 @@ export default function Stepper() {
                 </div>
                 <div className={"text-center"}>
                     <button className={`btn ${step === 4 ? 'bg-primary' : 'btn-outline-primary'} btn-circle-xl`}
+                            disabled={step <= 4}
                             onClick={() => setStep(4)}>
                         <span className={`${step === 4 ? 'text-white' : 'text-primary'} font-bold`}>4</span>
                     </button>
