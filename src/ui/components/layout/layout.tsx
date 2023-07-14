@@ -11,11 +11,11 @@ interface Props {
 }
 
 export default function Layout({children, isLogged = false}: Props) {
-    const {productList} = useApp();
+    const {productList, plan, setPlan} = useApp();
 
     return (
         <>
-            <AppContext.Provider value={{productList}}>
+            <AppContext.Provider value={{productList, plan, setPlan}}>
                 {isLogged ? <NavbarLogged/> : <Navbar/>}
                 {children}
                 <Footer/>

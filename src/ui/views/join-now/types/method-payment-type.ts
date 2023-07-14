@@ -1,0 +1,1 @@
+export type MethodPaymentType = 'debit-credit'|'banker-transfer'|'tigo-money'|'personal-cash'|undefined;

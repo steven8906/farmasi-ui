@@ -31,6 +31,10 @@ export default function useRegister() {
             alert("Debe seleccionar fecha de nacimiento.");
             return;
         }
+        if (formRegisterState.password !== formRegisterState.password_two) {
+            alert("Las contraseñas no coinciden.");
+            return;
+        }
         setFormRegister(formRegisterState);
         setStep(2);
     }

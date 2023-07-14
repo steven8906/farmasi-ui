@@ -5,15 +5,18 @@ import tigoMonetLogo from "../../../infrastructure/assets/img/tigo-money.png";
 import billeteraPersonalLogo from "../../../infrastructure/assets/img/billetera-personal.png";
 import {useNavigate} from "react-router-dom";
 import RoutesPath from "../../../infrastructure/router/routes-path";
+import Plan from "../../../cross-cutting/plans";
+import useAppContext from "../../../application/use-cases/use-app-context";
 
 export default function Plans() {
     const navigate = useNavigate();
+    const { setPlan } = useAppContext();
 
     return (
         <>
             <section className={"plans__main"}>
                 <div className={"container py-5"}>
-                    <h1 className={"font-semi-bold text-center text-white"}>Seleciona tu plan.</h1>
+                    <h1 className={"font-semi-bold text-center text-white"}>Selecciona tu plan.</h1>
                     <br/>
                     <br/>
                     <div className={"row justify-content-between"}>
@@ -41,7 +44,11 @@ export default function Plans() {
                                             especiales cambiando tu plan a uno de pago.
                                         </article>
                                         <br/>
-                                        <button className={"btn bg-white text-dark border-radius-25"} onClick={()=> navigate(RoutesPath.JOIN_NOW)}>
+                                        <button className={"btn bg-white text-dark border-radius-25"}
+                                                onClick={() => {
+                                                    setPlan(Plan.ONE);
+                                                    navigate(RoutesPath.JOIN_NOW);
+                                                }}>
                                             <span className={"font-regular text-bold font-size-22"}>¡Únete ahora!</span>
                                         </button>
                                         <br/>
@@ -82,7 +89,11 @@ export default function Plans() {
                                         <p className={"font-bold font-size-40 plans__card-winner"}>Gs. 450.000</p>
                                         <br/>
                                         <br/>
-                                        <button className={"btn bg-white text-dark border-radius-25"} onClick={()=> navigate(RoutesPath.JOIN_NOW)}>
+                                        <button className={"btn bg-white text-dark border-radius-25"}
+                                                onClick={() => {
+                                                    setPlan(Plan.TWO);
+                                                    navigate(RoutesPath.JOIN_NOW);
+                                                }}>
                                             <span className={"font-regular text-bold font-size-22"}>¡Únete ahora!</span>
                                         </button>
                                         <br/>
@@ -156,7 +167,10 @@ export default function Plans() {
                                         <br/>
                                         <br/>
                                         <button className={"btn text-dark border-radius-25"}
-                                                onClick={()=> navigate(RoutesPath.JOIN_NOW)}
+                                                onClick={() => {
+                                                    setPlan(Plan.THREE);
+                                                    navigate(RoutesPath.JOIN_NOW);
+                                                }}
                                                 style={{background: 'transparent linear-gradient(90deg, #F3CC61 0%, #FBF3C0 100%) 0% 0% no-repeat padding-box'}}>
                                             <span className={"font-regular text-bold font-size-22"}>¡Únete ahora!</span>
                                         </button>
@@ -247,7 +261,8 @@ export default function Plans() {
                 </div>
                 <div className={"w-60 m-auto d-block text-white d-flex flex-column align-items-center gap-5"}>
                     <div className={"row justify-content-center"}>
-                        <div className={"col-sm-12 col-md-6 d-flex flex-column align-items-center gap-3 border-end pe-5"}>
+                        <div
+                            className={"col-sm-12 col-md-6 d-flex flex-column align-items-center gap-3 border-end pe-5"}>
                             <div className={"d-flex justify-content-start align-items-center"}>
                                 <i className='bx bxs-check-shield'/>
                                 <span>Métodos de pagos aceptados.</span>
@@ -273,7 +288,7 @@ export default function Plans() {
                         </div>
                         <div className={"col-sm-12 col-md-6 d-flex flex-column justify-content-center ps-5"}>
                             <div className={"d-flex justify-content-start align-items-center mb-1"}>
-                                <i className='bx bxs-lock'></i>
+                                <i className='bx bxs-lock'/>
                                 <span>Pagos seguros.</span>
                             </div>
                             <p>Las transacciones están encriptadas y son seguras.</p>
@@ -281,7 +296,8 @@ export default function Plans() {
                     </div>
                     <h2 className={"font-bold"}>¿Todavía tienes dudas?</h2>
                     <div className={"border-2 px-5 border-radius-8"}>
-                        <a href={"tel:0975123456"} className={"font-size-25 text-white text-decoration-none"}>Contáctanos: 0975123456</a>
+                        <a href={"tel:0975123456"} className={"font-size-25 text-white text-decoration-none"}>Contáctanos:
+                            0975123456</a>
                     </div>
                 </div>
                 <br/>
