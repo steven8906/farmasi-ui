@@ -10,7 +10,7 @@ export default function Navbar() {
         <nav className="navbar navbar-expand-lg bg-body-tertiary py-2">
             <div className={"w-85 d-flex m-auto pb-1"}>
                 <div className="container-fluid">
-                    <a className="navbar-brand cursor-pointer__hover" onClick={()=> navigate(RoutesPath.HOME)}>
+                    <a className="navbar-brand cursor-pointer__hover" onClick={() => navigate(RoutesPath.HOME)}>
                         <img src={LogoFarmasi} alt="Logo" width="120" className="d-inline-block align-text-top"/>
                     </a>
                     <button className="navbar-toggler float-end" type="button" data-bs-toggle="collapse"
@@ -35,9 +35,15 @@ export default function Navbar() {
 
                 <div className={"justify-content-end align-items-center w-100 d-none d-lg-flex"}>
                     <button className={"btn font-size-16"}>Productos</button>
-                    <a className={"font-size-16 btn__alert"}  onClick={()=> navigate(RoutesPath.PLANS)}>¡Comienza gratis!</a>
+                    <a className={"font-size-16 btn__alert"}
+                       onClick={() => navigate(RoutesPath.PLANS)}>
+                        ¡Comienza gratis!
+                    </a>
                     <button className={"btn font-size-16"}>Precios</button>
-                    <button className={"btn font-size-16"}>Ingresar</button>
+                    <button className={"btn font-size-16"}
+                            onClick={() => navigate(RoutesPath.LOGIN)}>
+                        Ingresar
+                    </button>
                 </div>
             </div>
         </nav>

@@ -1,57 +1,53 @@
 import CardProduct from "./card-product";
-import ProductModel from "../../data/models/product-model";
-import {useEffect, useState} from "react";
+import {Product} from "../../data/models/product-model";
+import {PaginateResponse} from "../../data/models/response-model";
+import SectionShopType from "../../data/types/section-shop-type";
 
 interface Props {
     title      : string;
-    data       : ProductModel[];
+    data       : PaginateResponse<Product[]>;
+    type       : SectionShopType;
+    setPage    : (type: SectionShopType, page: number) => void
     sizePages? : number;
 }
 
-export default function ListProducts({title, data, sizePages = 12}: Props) {
-    const [dataPaginated, setDataPaginated] = useState<ProductModel[]>([...data]);
-
-    useEffect(() => {
-        paginate();
-    }, [])
-
-    const paginate = (page = 1): void => setDataPaginated(filterData<ProductModel>([...data], page, sizePages as number));
-
-    function filterData<T>(data: Array<T>, currentPage: number, pageSize: number): Array<T> {
-        return data.filter((item, i) => i < currentPage * pageSize && i >= (currentPage * pageSize) - pageSize);
-    }
+export default function ListProducts({title, data, sizePages = 12, setPage, type}: Props) {
 
     return <>
         <section className={"bg-primary-light p-3"}>
             <div className={"container"}>
                 <h1 className={"font-bold"}>{title}</h1>
                 <div className={"row justify-content-evenly my-5"}>
-                    {dataPaginated.map((x, index) =>
+                    {data.paginate.data.map((x, index) =>
                         <div className={"col-sm-12 col-md-8 col-lg-3 mb-3"} key={`news-${index}`}>
-                            <CardProduct imgPath={x.imgPath}
+                            <CardProduct imgPath={x.image}
                                          name={x.name}
-                                         beforeValue={x.beforeValue}
-                                         currentValue={x.currentValue}/>
+                                         beforeValue={x.before_price}
+                                         currentValue={x.price_a}/>
                         </div>)}
                 </div>
                 <div className={"d-flex justify-content-center mb-5"}>
                     <nav>
                         <ul className="pagination">
                             <li className="page-item">
-                                <a className="page-link border-primary bg-primary text-white border-radius-10"
-                                   href="#">Atrás</a>
+                                <button className="page-link border-primary bg-primary text-white border-radius-10"
+                                        type={"button"}
+                                        onClick={() => setPage(type, data.paginate.current_page -1 )}>Atrás
+                                </button>
                             </li>
-                            {new Array(Math.ceil(data.length / sizePages)).fill(null).map((_, index) =>
+                            {new Array(Math.ceil(data.paginate.total / sizePages)).fill(null).map((_, index) =>
                                 <li className="page-item mx-2"
                                     key={`page-${index}`}>
-                                    <button className="page-link border-primary bg-primary-light border-radius-10"
-                                        onClick={()=> paginate(index + 1)}>
+                                    <button
+                                        className={`page-link border-primary bg-primary-light border-radius-10 ${data.paginate.current_page === index + 1 ? 'bg-primary text-white' : ''}`}
+                                        onClick={() => setPage(type, index + 1)}>
                                         {index + 1}
                                     </button>
                                 </li>)}
                             <li className="page-item mx-2">
-                                <a className="page-link bg-primary text-white border-primary border-radius-10"
-                                   href="#">Adelante</a>
+                                <button className="page-link bg-primary text-white border-primary border-radius-10"
+                                        onClick={() => setPage(type, data.paginate.current_page + 1)}>Adelante
+                                </button>
                             </li>
                         </ul>
                     </nav>

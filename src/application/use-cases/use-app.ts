@@ -1,19 +1,20 @@
-import {useEffect, useState} from "react";
-import ProductModel from "../../data/models/product-model";
-import data from "../../data/repository/products";
+import {useState} from "react";
+import {Product} from "../../data/models/product-model";
 import Plans from "../../cross-cutting/plans";
+import SessionModel from "../../data/models/session-model";
+import {PaginateResponse} from "../../data/models/response-model";
 
 export default function useApp() {
-    const [productList, setProductList] = useState<ProductModel[]>([]);
+    const [productList, setProductList] = useState<PaginateResponse<Product[]>>();
     const [plan, setPlan]               = useState<Plans|undefined>();
-
-    useEffect(() => {
-        setProductList([...data]);
-    }, [])
+    const [session, setSession]         = useState<SessionModel>({} as SessionModel)
 
     return {
         productList,
         plan,
-        setPlan
+        session,
+        setPlan,
+        setSession,
+        setProductList,
     }
 }

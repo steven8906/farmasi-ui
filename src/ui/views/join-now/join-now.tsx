@@ -12,6 +12,8 @@ export default function JoinNow() {
         setFormRegister,
         setMethodPayment,
         setSendPayment,
+        setCreditData,
+        creditData,
         step,
         formRegister,
         methodPayment,
@@ -25,7 +27,9 @@ export default function JoinNow() {
                 setFormRegister,
                 setMethodPayment,
                 setSendPayment,
+                setCreditData,
                 step,
+                creditData,
                 formRegister,
                 methodPayment,
                 sendPayment,
@@ -39,7 +43,7 @@ export default function JoinNow() {
                         {step === 1 && <Register/>}
                         {step === 2 && <MethodPayment/>}
                         {step === 3 && <SendPayment/>}
-                        {step === 4 && <Confirmation/>}
+                        {step === 4 && <Confirmation />}
                     </div>
                 </section>
             </JoinNowContext.Provider>

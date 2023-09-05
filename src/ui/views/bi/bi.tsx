@@ -1,4 +1,3 @@
-import React from "react/ts5.0";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import FeathersLeft from "../../../infrastructure/assets/img/feathers-left.png";
 import FeathersRight from "../../../infrastructure/assets/img/feathers-right.png";

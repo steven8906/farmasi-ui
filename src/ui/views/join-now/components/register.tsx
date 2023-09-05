@@ -8,7 +8,7 @@ import formMessages from "../../../../cross-cutting/form-messages";
 
 export default function Register() {
     const {formRegisterState, setDataForm, setDate, onSubmit} = useRegister();
-    const defaultValue   = "" as never;
+    const defaultValue = "" as never;
 
     return (
         <>
@@ -58,12 +58,14 @@ export default function Register() {
                                        label="Nombre"
                                        name={"name"}
                                        required={true}
+                                       autoComplete={"off"}
                                        value={formRegisterState.name ?? defaultValue}/>
                             <TextField className={"w-50"}
                                        onChange={setDataForm}
                                        label="Apellido"
                                        name={"lastName"}
                                        required={true}
+                                       autoComplete={"off"}
                                        value={formRegisterState.lastName ?? defaultValue}/>
                         </div>
                     </div>
@@ -75,6 +77,7 @@ export default function Register() {
                                    label="Número de cédula"
                                    name={"identification"}
                                    required={true}
+                                   autoComplete={"off"}
                                    value={formRegisterState.identification ?? defaultValue}/>
                     </div>
                     <div className={"col-sm-12"}>&nbsp;</div>
@@ -85,24 +88,27 @@ export default function Register() {
                                    onChange={setDataForm}
                                    label="Correo electrónico"
                                    required={true}
-                                   value={formRegisterState.email ?? defaultValue} />
+                                   autoComplete={"off"}
+                                   value={formRegisterState.email ?? defaultValue}/>
                     </div>
                     <div className={"col-sm-12"}>&nbsp;</div>
                     <div className={"col-sm-12 col-md-8 col-lg-4 m-auto"}>
                         <div className={"d-flex justify-content-between gap-1"}>
                             <TextField className={"w-50"}
-                                required={true}
+                                       required={true}
                                        type={"password"}
                                        name={"password"}
                                        onChange={setDataForm}
                                        label="Contraseña"
+                                       autoComplete={"off"}
                                        value={formRegisterState.password ?? defaultValue}/>
                             <TextField className={"w-50"}
                                        type={"password"}
-                                required={true}
+                                       required={true}
                                        name={"password_two"}
                                        onChange={setDataForm}
                                        label="Confirmar contraseña"
+                                       autoComplete={"off"}
                                        value={formRegisterState.password_two ?? defaultValue}/>
                         </div>
                     </div>
@@ -110,7 +116,7 @@ export default function Register() {
                     <div className={"col-sm-12 col-md-8 col-lg-4 m-auto"}>
                         <div className={"d-flex justify-content-between gap-1"}>
                             <div className={"w-50"}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs} >
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DatePicker label="Fecha de nacimiento"
                                                 value={formRegisterState.date as never ?? defaultValue}
                                                 onChange={setDate}/>
@@ -144,6 +150,7 @@ export default function Register() {
                             name={"phone"}
                             required={true}
                             onChange={setDataForm}
+                            autoComplete={"off"}
                             value={formRegisterState.phone ?? defaultValue}
                             InputLabelProps={{
                                 shrink: true,

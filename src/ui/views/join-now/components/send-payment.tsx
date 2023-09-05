@@ -5,24 +5,26 @@ import useJoinNowContext from "../use-cases/useJoinNowContext";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {SelectChangeEvent} from "@mui/material";
 import {validateAlphabetic} from "../../../../cross-cutting/utils";
-import useAppContext from "../../../../application/use-cases/use-app-context";
+import CreditCard from "../../../components/credit-card/credit-card";
+import useConfirmation from "../use-cases/use-confirmation";
 
 export default function SendPayment() {
     const {sendPayment, setStep, setSendPayment} = useJoinNowContext();
     const [isEdit, setIsEdit]                    = useState<boolean>();
-    const {plan}                                 = useAppContext();
+    const {sendConfirmation}                     = useConfirmation();
 
     function onChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent): void {
         const {name, value, type, checked} = ev.target;
         const validation = {
-            "tel": text => validateAlphabetic(text),
-            "text": text => text,
-            "checkbox": () => checked,
+            "tel"      : text => validateAlphabetic(text),
+            "number"   : text => validateAlphabetic(text),
+            "text"     : text => text,
+            "checkbox" : ()   => checked,
         }
         setSendPayment(prevState => ({
             ...prevState,
             [name]: validation[type] ? validation[type](value) : value
-        }))
+        }));
     }
 
     function onSubmit(ev: FormEvent<HTMLFormElement>): void {
@@ -36,8 +38,7 @@ export default function SendPayment() {
             alert('Debe ingresar los datos de facturación.');
             return;
         }
-
-        setStep(4);
+        sendConfirmation();
     }
 
     return (
@@ -54,75 +55,7 @@ export default function SendPayment() {
                                             <img alt={"logo-card"} src={masterCardLogo} width={70}/>
                                         </div>
                                     </div>
-                                    <div className={"col-sm-12 col-md-4 mb-3"}>
-                                        <label className={"d-block font-semi-bold font-size-14 text-dark"}>
-                                            Numero de tarjeta <span className={"text-danger"}>*</span>
-                                        </label>
-                                        <input className={"border-radius-6 w-100"}
-                                               type={"tel"}
-                                               maxLength={20}
-                                               name={"cardNumber"}
-                                               value={sendPayment.cardNumber ?? ""}
-                                               required={true}
-                                               onChange={onChange}/>
-                                    </div>
-                                    <div className={"col-sm-12 col-md-4 mb-3"}>
-                                        <label className={"d-block font-semi-bold font-size-14 text-dark"}>
-                                            Mes de vencimiento <span className={"text-danger"}>*</span>
-                                        </label>
-                                        <input className={"border-radius-6 w-100"}
-                                               type={"number"}
-                                               name={"month"}
-                                               value={sendPayment.month ?? ""}
-                                               maxLength={2}
-                                               max={12}
-                                               min={1}
-                                               required={true}
-                                               onChange={onChange}/>
-                                    </div>
-                                    <div className={"col-sm-12 col-md-4 mb-3"}>
-                                        <label className={"d-block font-semi-bold font-size-14 text-dark"}>
-                                            Año de vencimiento <span className={"text-danger"}>*</span>
-                                        </label>
-                                        <input className={"border-radius-6 w-100"}
-                                               type={"number"}
-                                               maxLength={2}
-                                               name={"year"}
-                                               value={sendPayment.year ?? ""}
-                                               required={true}
-                                               min={parseInt(new Date().getFullYear().toString().substring(2))}
-                                               onChange={onChange}/>
-                                        <pre>{}</pre>
-                                    </div>
-                                    <div className={"col-sm-12 col-md-4 mb-3 d-none d-md-block"}>
-                                        <div className={"d-flex justify-content-start align-items-center gap-5"}>
-                                            <img alt={"logo-card"} src={visaLogo} width={70}/>
-                                            <img alt={"logo-card"} src={masterCardLogo} width={70}/>
-                                        </div>
-                                    </div>
-                                    <div className={"col-sm-12 col-md-4 mb-3"}>
-                                        <label className={"d-block font-semi-bold font-size-14 text-dark"}>
-                                            Nombre del titular de la tarjeta <span className={"text-danger"}>*</span>
-                                        </label>
-                                        <input className={"border-radius-6 w-100"}
-                                               maxLength={50}
-                                               name={"name"}
-                                               value={sendPayment.name ?? ""}
-                                               required={true}
-                                               onChange={onChange}/>
-                                    </div>
-                                    <div className={"col-sm-12 col-md-4 mb-3"}>
-                                        <label className={"d-block font-semi-bold font-size-14 text-dark"}>
-                                            Código de seguridad <span className={"text-danger"}>*</span>
-                                        </label>
-                                        <input className={"border-radius-6 w-100"}
-                                               type={"number"}
-                                               maxLength={3}
-                                               name={"securityCode"}
-                                               value={sendPayment.securityCode ?? ""}
-                                               required={true}
-                                               onChange={onChange}/>
-                                    </div>
+                                    <CreditCard/>
                                 </div>
                             </div>
                             <br/>

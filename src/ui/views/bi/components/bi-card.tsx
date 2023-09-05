@@ -1,5 +1,3 @@
-import React from "react/ts5.0";
-
 interface Props {
     name: string;
 }

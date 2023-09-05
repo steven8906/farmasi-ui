@@ -14,5 +14,5 @@ export default interface RegisterModel {
     password_two   : string
     agree          : string
     gender         : string
-    date           : Dayjs
+    date           : Dayjs|string
 }
