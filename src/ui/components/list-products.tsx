@@ -14,7 +14,7 @@ interface Props {
 export default function ListProducts({title, data, sizePages = 12, setPage, type}: Props) {
 
     return <>
-        { data.paginate ?
+        {data.paginate ?
             <section className={"bg-primary-light p-3"}>
                 <div className={"container"}>
                     <h1 className={"font-bold"}>{title}</h1>
@@ -33,7 +33,7 @@ export default function ListProducts({title, data, sizePages = 12, setPage, type
                                 <li className="page-item">
                                     <button className="page-link border-primary bg-primary text-white border-radius-10"
                                             type={"button"}
-                                            onClick={() => setPage(type, data.paginate.current_page -1 )}>Atrás
+                                            onClick={() => setPage(type, data.paginate.current_page - 1)}>Atrás
                                     </button>
                                 </li>
                                 {new Array(Math.ceil(data.paginate.total / sizePages)).fill(null).map((_, index) =>
@@ -55,6 +55,6 @@ export default function ListProducts({title, data, sizePages = 12, setPage, type
                     </div>
                 </div>
             </section> :
-        <p>Cargando...</p>}
+            <p className={"pb-5"}>Cargando...</p>}
     </>
 }
