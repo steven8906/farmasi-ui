@@ -11,6 +11,7 @@ import Bi from "../../ui/views/bi/bi";
 import Loading from "../../ui/components/loading";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Admin from "../../ui/views/admin/admin";
 
 export default function MainRouter() {
 
@@ -24,6 +25,7 @@ export default function MainRouter() {
                         <Route path={routesPath.STORE} element={<Layout isLogged={true}><Store/></Layout>}/>
                         <Route path={routesPath.SHOP} element={<Layout isLogged={true}><Shop /></Layout>}/>
                         <Route path={routesPath.BI} element={<Layout><Bi/></Layout>}/>
+                        <Route path={routesPath.ADMIN} element={<Layout><Admin/></Layout>}/>
                     </Routes>
                     <Routes>
                         <Route path={routesPath.LOGIN} element={<Layout outContainer={true}><Login/></Layout>}/>

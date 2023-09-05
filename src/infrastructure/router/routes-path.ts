@@ -6,6 +6,7 @@ enum RoutesPath {
     STORE    = '/tienda',
     SHOP     = '/comercio',
     BI       = '/bi',
+    ADMIN    = '/admin',
 }
 
 export default RoutesPath;
