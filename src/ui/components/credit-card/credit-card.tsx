@@ -2,6 +2,7 @@ import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import useJoinNowContext from "../../views/join-now/use-cases/useJoinNowContext";
 import {ChangeEvent} from "react";
+import CreditFocusType from "../../../data/types/credit-focus-type";
 
 export default function CreditCard() {
     const {creditData, setCreditData} = useJoinNowContext();
@@ -38,7 +39,7 @@ export default function CreditCard() {
     };
 
     const handleInputFocus = (evt:ChangeEvent<HTMLInputElement>) => {
-        const focus = evt.target.name as any;
+        const focus = evt.target.name as CreditFocusType;
         setCreditData(prev => ({...prev, focus}));
     };
 
