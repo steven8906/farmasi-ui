@@ -12,7 +12,7 @@ export default interface RegisterModel {
     phone          : string
     password       : string
     password_two   : string
-    agree          : string
+    agree          : boolean
     gender         : string
     date           : Dayjs|string
 }

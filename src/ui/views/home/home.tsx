@@ -8,7 +8,7 @@ export default function Home(){
         <>
             <Hero/>
             <ViewPlans/>
-            <NewProducts path={[]}/>
+            <NewProducts/>
         </>
     )
 }

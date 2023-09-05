@@ -19,7 +19,7 @@ export default function Pagination({data, sizePages = 12}:Props) {
     }
 
     function filterData<T>(data: Array<T>, currentPage: number, pageSize: number): Array<T> {
-        return data.filter((item, i) => i < currentPage * pageSize && i >= (currentPage * pageSize) - pageSize);
+        return data.filter((_, i) => i < currentPage * pageSize && i >= (currentPage * pageSize) - pageSize);
     }
 
     return <>

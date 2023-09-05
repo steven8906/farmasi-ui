@@ -45,7 +45,7 @@ export default function useLogin() {
 
     function checkError(err: AxiosError):void {
         const message = err.response?.status === 401 ?
-            err.response.data.message :
+            (err.response.data as { message: string }).message :
             JSON.stringify(err.response?.data);
         toast(message, {type: 'error'});
     }

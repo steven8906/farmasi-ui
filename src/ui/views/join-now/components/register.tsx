@@ -166,7 +166,7 @@ export default function Register() {
                                 <Checkbox onChange={setDataForm}
                                           name={"agree"}
                                           required={true}
-                                          checked={formRegisterState.agree as boolean ?? false}/>}
+                                          checked={formRegisterState.agree ?? false}/>}
                         />
                     </div>
                     <span className={"col-sm-12"}/>

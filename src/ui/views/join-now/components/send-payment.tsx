@@ -13,12 +13,12 @@ export default function SendPayment() {
     const [isEdit, setIsEdit]                    = useState<boolean>();
     const {sendConfirmation}                     = useConfirmation();
 
-    function onChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent): void {
-        const {name, value, type, checked} = ev.target;
-        const validation = {
-            "tel"      : text => validateAlphabetic(text),
-            "number"   : text => validateAlphabetic(text),
-            "text"     : text => text,
+    function onChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | SelectChangeEvent>): void {
+        const {name, value, type, checked} = (ev.target as (HTMLInputElement|HTMLTextAreaElement) & { checked: boolean});
+        const validation: Record<string, CallableFunction> = {
+            "tel"      : (text: string) => validateAlphabetic(text),
+            "number"   : (text: string) => validateAlphabetic(text),
+            "text"     : (text: string) => text,
             "checkbox" : ()   => checked,
         }
         setSendPayment(prevState => ({

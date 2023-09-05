@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import useSession from "../../../../application/use-cases/use-session";
 import useAppContext from "../../../../application/use-cases/use-app-context";
 import {Product} from "../../../../data/models/product-model";
 import httpServices from "../../../../application/services/http-services";
@@ -9,7 +8,7 @@ import SectionShopType from "../../../../data/types/section-shop-type";
 export default function useShop() {
     const [sectionShop, setSectionShop] = useState<SectionsShop>('MAQUILLAJE');
     const {productList, setProductList} = useAppContext();
-    const {isLogged}                    = useSession();
+    // const {isLogged}                    = useSession();
 
     useEffect(() => {
         getProducts('MAQUILLAJE');

@@ -20,10 +20,10 @@ export default function ListProducts({title, data, sizePages = 12, setPage, type
                 <div className={"row justify-content-evenly my-5"}>
                     {data.paginate.data.map((x, index) =>
                         <div className={"col-sm-12 col-md-8 col-lg-3 mb-3"} key={`news-${index}`}>
-                            <CardProduct imgPath={x.image}
+                            <CardProduct image={x.image}
                                          name={x.name}
-                                         beforeValue={x.before_price}
-                                         currentValue={x.price_a}/>
+                                         currentValue={x.price_a}
+                                         before_price={x.before_price}/>
                         </div>)}
                 </div>
                 <div className={"d-flex justify-content-center mb-5"}>

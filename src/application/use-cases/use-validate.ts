@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import validatorService from "../services/validatorService.js";
 import {useEffect} from "react";
 

@@ -8,7 +8,7 @@ export interface Product {
     price_a       : string
     price_b       : string
     price_c       : string
-    before_price? : string
+    before_price? : string|number
     usu           : string
     image?        : string
     type          : SectionShopType

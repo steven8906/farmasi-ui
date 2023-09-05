@@ -1,12 +1,8 @@
 import "../styles/_new-products.scss";
 
-interface Props {
-    path: string[];
-}
+export default function NewProducts() {
 
-export default function NewProducts({data}: Props) {
-
-    data = [
+    const data = [
         { path: "https://content.mx.farmasi.com/Product/1000381_250.jpg", },
         { path: "https://content.mx.farmasi.com/Product/1000325_250.jpg", },
         { path: "https://content.mx.farmasi.com/Product/1000931_250.jpg", },

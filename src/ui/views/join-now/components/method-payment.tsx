@@ -1,6 +1,6 @@
 import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
 import useJoinNowContext from "../use-cases/useJoinNowContext";
-import React, {ChangeEvent} from "react";
+import {ChangeEvent} from "react";
 import {MethodPaymentType} from "../types/method-payment-type";
 
 export default function MethodPayment() {

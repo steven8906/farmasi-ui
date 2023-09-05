@@ -10,9 +10,9 @@ export default function useRegister() {
     const [formRegisterState, setFormRegisterState] = useState<RegisterModel>(formRegister);
 
     function setDataForm(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent): void {
-        const {name, value, type, checked} = ev.target;
-        const validation = {
-            "tel"      : text => validateAlphabetic(text),
+        const {name, value, type, checked} = (ev.target as (HTMLInputElement | HTMLTextAreaElement) & { checked:boolean } );
+        const validation: Record<string, CallableFunction> = {
+            "tel"      : (text: string) => validateAlphabetic(text),
             "checkbox" :()=> checked,
         }
         setFormRegisterState(prevState => ({
@@ -21,7 +21,7 @@ export default function useRegister() {
         }))
     }
 
-    function setDate(date: Dayjs): void {
+    function setDate(date: Dayjs|any): void {
         setFormRegisterState(prevState => ({...prevState, date}))
     }
 

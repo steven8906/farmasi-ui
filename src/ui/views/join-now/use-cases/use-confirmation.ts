@@ -43,8 +43,8 @@ export default function useConfirmation() {
     }
 
     const callCatch = (res: AxiosError): void => {
-        if (res.response.status === 400) {
-            const {errors} = res.response.data;
+        if (res.response?.status === 400) {
+            const {errors} = res.response.data as { errors: [] };
             const errorValues = Object.values(errors);console.error(errorValues.flat())
             Array.isArray(errorValues) && errorValues.flat().forEach(x => toast.error(x));
         } else {

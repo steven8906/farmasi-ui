@@ -5,7 +5,7 @@ import SessionModel from "../../data/models/session-model";
 import {PaginateResponse} from "../../data/models/response-model";
 
 export default function useApp() {
-    const [productList, setProductList] = useState<PaginateResponse<Product[]>>();
+    const [productList, setProductList] = useState<PaginateResponse<Product[]>>({} as PaginateResponse<Product[]>);
     const [plan, setPlan]               = useState<Plans|undefined>();
     const [session, setSession]         = useState<SessionModel>({} as SessionModel)
 

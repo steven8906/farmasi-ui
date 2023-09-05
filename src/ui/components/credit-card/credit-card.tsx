@@ -1,12 +1,12 @@
-import React from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import useJoinNowContext from "../../views/join-now/use-cases/useJoinNowContext";
+import {ChangeEvent} from "react";
 
 export default function CreditCard() {
     const {creditData, setCreditData} = useJoinNowContext();
 
-    const handleInputChange = (evt) => {
+    const handleInputChange = (evt:ChangeEvent<HTMLInputElement>) => {
         const {name, value} = evt.target;
 
         if (name === "number" && value.length <= 20) {
@@ -24,7 +24,7 @@ export default function CreditCard() {
             const month = formattedValue.slice(0, 2);
             const year = formattedValue.slice(2, 4);
 
-            if (month > 12) {
+            if (parseFloat(month) > 12) {
                 setCreditData((prev) => ({...prev, [name]: year}));
             } else {
                 setCreditData((prev) => ({...prev, [name]: formattedValue}));
@@ -37,8 +37,9 @@ export default function CreditCard() {
         }
     };
 
-    const handleInputFocus = (evt) => {
-        setCreditData((prev) => ({...prev, focus: evt.target.name}));
+    const handleInputFocus = (evt:ChangeEvent<HTMLInputElement>) => {
+        const focus = evt.target.name as any;
+        setCreditData(prev => ({...prev, focus}));
     };
 
     return (
