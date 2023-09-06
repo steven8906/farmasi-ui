@@ -1,18 +1,31 @@
 export default interface SessionModel {
-    token       : Token;
-    user        : User;
-    permissions : Permission[];
+    token                : Token;
+    user                 : User;
+    permissions          : Permission[];
+    role_has_permissions : PermissionHasRole[];
+    role_has_model       : RolesHasModel[];
 }
 
 export interface Token {
     accessToken : string;
     token       : TokenInfo;
 }
+export interface RolesHasModel {
+    role_id:    number;
+    model_type: string;
+    model_id:   number;
+}
 
 export interface User {
     id   : number;
     user : string;
 }
+
+export interface PermissionHasRole {
+    permission_id: number;
+    role_id:       number;
+}
+
 
 export interface TokenInfo {
     id          : string;
@@ -28,4 +41,5 @@ export interface TokenInfo {
 
 export interface Permission {
     name        : string;
+    id          : number;
 }

@@ -15,7 +15,6 @@ interface Props {
 export default function Layout({children, outContainer = false}: Props) {
     const {productList, plan, setSession, setPlan, setProductList} = useApp();
     const session = useLoginStore(state => state.session);
-
     return (
         <>
             <AppContext.Provider value={{
@@ -27,7 +26,7 @@ export default function Layout({children, outContainer = false}: Props) {
                 setProductList
             }}>
                 {!outContainer ? <>
-                        {session ? <NavbarLogged/> : <Navbar/>}
+                        {Object.keys(session).length > 0 ? <NavbarLogged/> : <Navbar/>}
                         {children}
                         <Footer/>
                     </> :

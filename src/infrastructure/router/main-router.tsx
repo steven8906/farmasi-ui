@@ -17,6 +17,21 @@ import SessionModel from "../../data/models/session-model";
 
 export default function MainRouter() {
     const session:SessionModel = useLoginStore(state => state.session);
+
+    function checkPermission(permission: string): boolean {
+        if (Object.keys(session).length > 0){
+            const permissionData = session.permissions.find(x => x.name === permission);
+            const roles          = session.role_has_model.filter(x => x.model_id === session.user.id);
+            let allow            = false;
+            roles.forEach(role => {
+                const rolesWithPermission = session.role_has_permissions.filter(x => x.permission_id === permissionData.id);
+                if (rolesWithPermission.some(x => x.role_id === role.role_id)) allow = true;
+            })
+            return allow
+        }
+        return false;
+    }
+
     return (
         <>
             <HashRouter>
@@ -27,7 +42,7 @@ export default function MainRouter() {
                         <Route path={routesPath.STORE} element={<Layout><Store/></Layout>}/>
                         <Route path={routesPath.SHOP} element={<Layout><Shop /></Layout>}/>
                         <Route path={routesPath.BI} element={<Layout><Bi/></Layout>}/>
-                        {session?.permissions?.some(x => x.name === 'read:admin') && <Route path={routesPath.ADMIN} element={<Layout><Admin/></Layout>}/>}
+                        {checkPermission('read:admin') && <Route path={routesPath.ADMIN} element={<Layout><Admin/></Layout>}/>}
                     </Routes>
                     <Routes>
                         <Route path={routesPath.LOGIN} element={<Layout outContainer={true}><Login/></Layout>}/>
