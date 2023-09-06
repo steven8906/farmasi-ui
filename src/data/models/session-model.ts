@@ -1,11 +1,17 @@
 export default interface SessionModel {
-    token             : Token;
-    permissions       : Permission[];
+    token       : Token;
+    user        : User;
+    permissions : Permission[];
 }
 
 export interface Token {
     accessToken : string;
     token       : TokenInfo;
+}
+
+export interface User {
+    id   : number;
+    user : string;
 }
 
 export interface TokenInfo {

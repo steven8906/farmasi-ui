@@ -21,6 +21,7 @@ export default function ModalChangeImage({children, product, callback}: Props) {
 
     function changeImage(ev: ChangeEvent<HTMLInputElement>): void {
         if (typeof ev.target?.files !== 'undefined') changeImagen(ev.target?.files[0]);
+        console.log(ev.target?.files[0])
     }
 
     function change(): void {

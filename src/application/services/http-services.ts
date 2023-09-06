@@ -26,4 +26,10 @@ export default {
                            }: GetType): Promise<AxiosResponse<PaginateResponse<TResponse>>> {
         return axios.get(`${import.meta.env.VITE_APP_API}/${action}`, {...config});
     },
+    getNoPaginate<TResponse>({
+                               action,
+                               config = {}
+                           }: GetType): Promise<AxiosResponse<TResponse>> {
+        return axios.get(`${import.meta.env.VITE_APP_API}/${action}`, {...config});
+    },
 }

@@ -9,6 +9,7 @@ import useAppContext from "../../../../application/use-cases/use-app-context";
 import HttpMessages from "../../../../cross-cutting/http-messages";
 import {useNavigate} from "react-router-dom";
 import RoutesPath from "../../../../infrastructure/router/routes-path";
+import useLoginStore from "../../../../application/store/use-login-store";
 
 type LoginFormType = {
     email    : string;
@@ -19,6 +20,7 @@ export default function useLogin() {
     const {show, hide}              = useLoading();
     const {setSession}              = useAppContext();
     const navigate                  = useNavigate();
+    const setSessionStore           = useLoginStore((state) => state.setSession);
 
     function onChange(ev: React.ChangeEvent<HTMLInputElement>): void {
         const {name, value} = ev.target;
@@ -40,6 +42,7 @@ export default function useLogin() {
     function checkLoginSuccess(res: AxiosResponse<ResponseModel<SessionModel>>):void {
         toast(HttpMessages.OkRequest, { type: 'success' });
         setSession(res.data.data);
+        setSessionStore(res.data.data);
         navigate(RoutesPath.SHOP);
     }
 

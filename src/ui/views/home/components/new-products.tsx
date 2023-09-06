@@ -1,16 +1,22 @@
 import "../styles/_new-products.scss";
+import {useEffect, useState} from "react";
+import {Product} from "../../../../data/models/product-model";
+import httpServices from "../../../../application/services/http-services";
+import ResponseModel from "../../../../data/models/response-model";
 
 export default function NewProducts() {
+    const [newProductList, setNewProductList] = useState<Product[]>([]);
 
-    const data = [
-        { path: "https://content.mx.farmasi.com/Product/1000381_250.jpg", },
-        { path: "https://content.mx.farmasi.com/Product/1000325_250.jpg", },
-        { path: "https://content.mx.farmasi.com/Product/1000931_250.jpg", },
-        { path: "https://content.mx.farmasi.com/Product/1107025_250.jpg", },
-        { path: "https://content.mx.farmasi.com/Product/1001508_250.jpg", },
-        { path: "https://content.mx.farmasi.com/Product/1301528_250.jpg", },
-        { path: "https://content.mx.farmasi.com/Product/1301492_250.jpg", },
-    ]
+    useEffect(()=> {
+        getNewProducts();
+    }, [])
+
+    function getNewProducts(): void {
+        httpServices.getNoPaginate<ResponseModel<Product[]>>(
+            {
+                action: 'products/new-products',
+            }).then(res => setNewProductList(res.data.data))
+    }
 
     return (
         <>
@@ -18,11 +24,11 @@ export default function NewProducts() {
                 <article className={"container"}>
                     <h2 className={"text-bold"}>¡Nuevos productos!</h2>
                     <div className={"row mt-5 pb-100"}>
-                        {data.map((x, index) =>
+                        {newProductList.length > 0 && newProductList.map((x, index) =>
                             <div className={"col-sm-6 col-lg-3 mb-3"} key={`product-${index}`}>
                                 <div className="new-products__card card shadow w-100 my-4">
-                                    <img src={x.path}
-                                         className="card-img" alt=""/>
+                                    <img src={`data:image/jpeg;base64,${x.image}`}
+                                         className="card-img " alt="" height={350} width={200}/>
                                 </div>
                                 <button className={"btn btn-primary text-white m-auto d-block w-50"}>
                                     Ver producto

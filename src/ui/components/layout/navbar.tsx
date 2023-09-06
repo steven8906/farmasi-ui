@@ -34,12 +34,12 @@ export default function Navbar() {
                 </div>
 
                 <div className={"justify-content-end align-items-center w-100 d-none d-lg-flex"}>
-                    <button className={"btn font-size-16"}>Productos</button>
+                    <button className={"btn font-size-16"} onClick={() => navigate(RoutesPath.SHOP)}>Productos</button>
                     <a className={"font-size-16 btn__alert"}
                        onClick={() => navigate(RoutesPath.PLANS)}>
                         ¡Comienza gratis!
                     </a>
-                    <button className={"btn font-size-16"}>Precios</button>
+                    <button className={"btn font-size-16"} onClick={() => navigate(RoutesPath.PLANS)}>Precios</button>
                     <button className={"btn font-size-16"}
                             onClick={() => navigate(RoutesPath.LOGIN)}>
                         Ingresar

@@ -33,7 +33,7 @@ export default function Admin() {
                                 <th scope="row">{x.cod}</th>
                                 <td>{x.name}</td>
                                 <td className={"d-flex justify-content-center"}>
-                                    <ModalChangeImage product={x} callback={getProducts}>
+                                    <ModalChangeImage product={x} callback={()=> getProducts('ALL', products?.paginate.current_page)}>
                                         <Avatar alt={x.name}
                                                 src={`data:image/jpeg;base64, ${x.image}`}
                                                 sx={{width: 56, height: 56}}/>

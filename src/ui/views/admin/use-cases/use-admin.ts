@@ -5,18 +5,20 @@ import {PaginateResponse} from "../../../../data/models/response-model";
 import SectionShopType from "../../../../data/types/section-shop-type";
 import FormModel from "../models/form-model";
 import SearchModel from "../../../../data/models/search-model";
+import useSession from "../../../../application/use-cases/use-session";
 
 export default function () {
     const [products, setProducts]                 = useState<PaginateResponse<Product[]> | undefined>(undefined);
     const [originalProducts, setOriginalProducts] = useState<PaginateResponse<Product[]> | undefined>(undefined);
     const [form, setForm]                         = useState<FormModel>({} as FormModel);
+    const {getHeaderAuth}                         = useSession();
 
     useEffect(() => {
         getProducts();
     }, [])
 
     function getProducts(type: SectionShopType = 'ALL', page = 1): void {
-        httpServices.get<Product[]>({action: `products/${type}?page=${page}`})
+        httpServices.get<Product[]>({action: `products/${type}?page=${page}`, ...getHeaderAuth()})
             .then(res => {
                 setProducts(res.data);
                 setOriginalProducts(res.data);
@@ -40,6 +42,7 @@ export default function () {
             httpServices.post<SearchModel, Response>({
                 action : 'products/search',
                 data   : {...search},
+                ...getHeaderAuth()
             }).then(({data }) => setProducts((data as PaginateResponse<Product[]>)))
         }else setProducts(originalProducts);
     }

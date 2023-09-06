@@ -2,9 +2,12 @@ import LogoFarmasi from "../../../infrastructure/assets/img/logo.png";
 import {useNavigate} from "react-router-dom";
 import RoutesPath from "../../../infrastructure/router/routes-path";
 import "./navbar.scss";
+import useLoginStore from "../../../application/store/use-login-store";
+import SessionModel from "../../../data/models/session-model";
 
 export default function NavbarLogged() {
     const navigate = useNavigate();
+    const session: SessionModel = useLoginStore(state => state.session);
 
     return (<>
         <nav className="navbar navbar-expand-lg py-2">
@@ -44,7 +47,7 @@ export default function NavbarLogged() {
                     <a className={"font-size-16 btn__alert px-5"}  onClick={()=> navigate(RoutesPath.SHOP)}>Tienda</a>
                     <button className={"btn font-size-16"}>
                         <i className='bx bx-shopping-bag font-size-25 me-3 align-middle' style={{color:'gray'}}/>
-                        <span className={"align-middle"}>Yoli Caballero</span>
+                        <span className={"align-middle"}>{session.user.user}</span>
                     </button>
                 </div>
             </div>
