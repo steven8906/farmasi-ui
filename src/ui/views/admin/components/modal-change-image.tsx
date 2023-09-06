@@ -20,12 +20,13 @@ export default function ModalChangeImage({children, product, callback}: Props) {
     const handleClose     = () => setOpen(false);
 
     function changeImage(ev: ChangeEvent<HTMLInputElement>): void {
-        if (typeof ev.target?.files !== 'undefined') changeImagen(ev.target?.files[0]);
-        console.log(ev.target?.files[0])
+        if (ev.target && ev.target.files && ev.target.files.length > 0) {
+            changeImagen(ev.target?.files[0]);
+        }
     }
 
     function change(): void {
-        const form = new FormData(document.querySelector('form'));
+        const form = new FormData(document.querySelector('form') as HTMLFormElement);
         form.append('product', JSON.stringify(product));
         if (image) form.append('image', image);
         httpServices.post<FormData, { data: string }>({

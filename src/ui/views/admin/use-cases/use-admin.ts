@@ -43,7 +43,7 @@ export default function () {
                 action : 'products/search',
                 data   : {...search},
                 ...getHeaderAuth()
-            }).then(({data }) => setProducts((data as PaginateResponse<Product[]>)))
+            }).then(({data }) => setProducts((data as unknown as PaginateResponse<Product[]>)))
         }else setProducts(originalProducts);
     }
 

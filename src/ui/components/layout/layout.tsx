@@ -12,7 +12,7 @@ interface Props {
     outContainer?: boolean;
 }
 
-export default function Layout({children, isLogged = false, outContainer = false}: Props) {
+export default function Layout({children, outContainer = false}: Props) {
     const {productList, plan, setSession, setPlan, setProductList} = useApp();
     const session = useLoginStore(state => state.session);
 
