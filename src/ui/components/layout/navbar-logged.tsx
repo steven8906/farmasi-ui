@@ -47,7 +47,7 @@ export default function NavbarLogged() {
                     <a className={"font-size-16 btn__alert px-5"}  onClick={()=> navigate(RoutesPath.SHOP)}>Tienda</a>
                     <button className={"btn font-size-16"}>
                         <i className='bx bx-shopping-bag font-size-25 me-3 align-middle' style={{color:'gray'}}/>
-                        <span className={"align-middle"}>{session.user.user}</span>
+                        <span className={"align-middle"}>{session?.user?.user}</span>
                     </button>
                 </div>
             </div>

@@ -27,7 +27,7 @@ export default function MainRouter() {
                         <Route path={routesPath.STORE} element={<Layout><Store/></Layout>}/>
                         <Route path={routesPath.SHOP} element={<Layout><Shop /></Layout>}/>
                         <Route path={routesPath.BI} element={<Layout><Bi/></Layout>}/>
-                        {session?.permissions.some(x => x.name === 'read:admin') && <Route path={routesPath.ADMIN} element={<Layout><Admin/></Layout>}/>}
+                        {session?.permissions?.some(x => x.name === 'read:admin') && <Route path={routesPath.ADMIN} element={<Layout><Admin/></Layout>}/>}
                     </Routes>
                     <Routes>
                         <Route path={routesPath.LOGIN} element={<Layout outContainer={true}><Login/></Layout>}/>
