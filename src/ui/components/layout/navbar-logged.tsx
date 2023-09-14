@@ -4,10 +4,14 @@ import RoutesPath from "../../../infrastructure/router/routes-path";
 import "./navbar.scss";
 import useLoginStore from "../../../application/store/use-login-store";
 import SessionModel from "../../../data/models/session-model";
+import useSession from "../../../application/use-cases/use-session";
+import {currencyFormatter} from "../../../cross-cutting/utils";
 
 export default function NavbarLogged() {
-    const navigate = useNavigate();
-    const session: SessionModel = useLoginStore(state => state.session);
+    type StateType              = { session: SessionModel, setSession: (data: SessionModel) => void }
+    const navigate              = useNavigate();
+    const {session, setSession} = useLoginStore(state => state as StateType);
+    const {getPlan}             = useSession();
 
     return (<>
         <nav className="navbar navbar-expand-lg py-2">
@@ -39,16 +43,28 @@ export default function NavbarLogged() {
                 <div className={"justify-content-end align-items-center w-100 d-none d-lg-flex gap-3"}>
                     <div className="input-group flex-nowrap w-30 p-1 px-3 me-4"
                          style={{ border:'1px solid #DBDBDB', borderRadius:'18px' }}>
-                        <input type="text" className="form-control border-0 p-0" placeholder="Buscar producto." />
+                        <input type="text"
+                               className="form-control border-0 p-0"
+                               placeholder="Buscar producto." />
                         <span className="input-group-text bg-white border-0 p-0">
                                 <i className='bx bx-search-alt'/>
                             </span>
                     </div>
                     <a className={"font-size-16 btn__alert px-5"}  onClick={()=> navigate(RoutesPath.SHOP)}>Tienda</a>
-                    <button className={"btn font-size-16"}>
-                        <i className='bx bx-shopping-bag font-size-25 me-3 align-middle' style={{color:'gray'}}/>
-                        <span className={"align-middle"}>{session?.user?.user}</span>
-                    </button>
+                    <div className="dropdown">
+                        <button className="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i className='bx bx-shopping-bag font-size-25 me-3 align-middle' style={{color:'gray'}}/>
+                            <span className={"align-middle"}>{session?.user?.user}</span>
+                            <span className={"align-middle"}> - Crédito: {currencyFormatter(getPlan())}</span>
+                        </button>
+                        <ul className="dropdown-menu">
+                            <li>
+                                <button className="dropdown-item"
+                                        onClick={()=> setSession({} as SessionModel)}
+                                        type={"button"}>Cerrar Sesión</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>

@@ -1,7 +1,10 @@
 .hero__main {
-  width            : 100%;
-  margin           : auto;
-  background-color : #E2E5EA;
+  width               : 100%;
+  margin              : auto;
+  background-image    : url("../../../../infrastructure/assets/img/bg.png");
+  background-size     : cover;
+  background-position : top;
+  background-repeat   : no-repeat;
 
   article {
     h1 {
@@ -70,6 +73,5 @@
   .hero__main-button-bar {
     display          : block;
     padding          : 1rem 0;
-    background-image : linear-gradient(to bottom, white, #E2E5EA);
   }
 }

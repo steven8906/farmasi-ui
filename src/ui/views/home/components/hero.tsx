@@ -4,8 +4,9 @@ import RoutesPath from "../../../../infrastructure/router/routes-path";
 
 export default function Hero() {
     const navigate = useNavigate();
+    const { screen: { width } } = window;
     return (<>
-        <section className={"hero__main text-center pt-6-rem"}>
+        <section className={`hero__main text-center ${width < 700 ? 'pt-2-rem' : 'pt-7-rem'}`}>
             <article className={"d-block w-60 m-auto mt-50"}>
                 <h1>¡Inicia tu emprendimiento y empiza a ganar ya!</h1>
                 <h5>Incrementa tus ingresos hoy.</h5>
@@ -15,6 +16,32 @@ export default function Hero() {
                 <a className={"bg-primary text-white font-size-24"} onClick={()=> navigate(RoutesPath.PLANS)}>Comienza gratis</a>
                 <img className={"d-block"} alt={""} src={"https://blog.cosmeticosalpormayor.com/hs-fs/hubfs/Tu-negocio-de-cosmeticos-blog.png?width=400&name=Tu-negocio-de-cosmeticos-blog.png"}/>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <br/>
             <br/>
             <br/>

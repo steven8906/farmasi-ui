@@ -1,4 +1,4 @@
-import LogoFarmasi from "../../../infrastructure/assets/img/logo.png";
+import logo from "../../../infrastructure/assets/img/logo-anaue.png";
 import {useNavigate} from "react-router-dom";
 import RoutesPath from "../../../infrastructure/router/routes-path";
 import "./navbar.scss";
@@ -7,11 +7,11 @@ export default function Navbar() {
     const navigate = useNavigate();
 
     return (<>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary py-2">
+        <nav className="navbar navbar-expand-lg bg-white py-2">
             <div className={"w-85 d-flex m-auto pb-1"}>
                 <div className="container-fluid">
                     <a className="navbar-brand cursor-pointer__hover" onClick={() => navigate(RoutesPath.HOME)}>
-                        <img src={LogoFarmasi} alt="Logo" width="120" className="d-inline-block align-text-top"/>
+                        <img src={logo} alt="Logo" width="200" className="d-inline-block align-text-top py-2"/>
                     </a>
                     <button className="navbar-toggler float-end" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
@@ -40,9 +40,9 @@ export default function Navbar() {
                         ¡Comienza gratis!
                     </a>
                     <button className={"btn font-size-16"} onClick={() => navigate(RoutesPath.PLANS)}>Precios</button>
-                    <button className={"btn font-size-16"}
+                    <button className={"btn font-size-16 d-flex align-items-center gap-2"}
                             onClick={() => navigate(RoutesPath.LOGIN)}>
-                        Ingresar
+                        <i className='bx bx-user font-size-20'/> Ingresar
                     </button>
                 </div>
             </div>

@@ -43,7 +43,7 @@ export default function useLogin() {
         toast(HttpMessages.OkRequest, { type: 'success' });
         setSession(res.data.data);
         setSessionStore(res.data.data);
-        navigate(RoutesPath.SHOP);
+        navigate(RoutesPath.STORE);
     }
 
     function checkError(err: AxiosError):void {

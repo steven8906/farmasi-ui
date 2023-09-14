@@ -1,4 +1,5 @@
 import {currencyFormatter} from "../../cross-cutting/utils";
+import useBasketStore from "../../application/store/use-basket-store";
 
 type Props = {
     image?       : string|undefined,
@@ -7,8 +8,9 @@ type Props = {
     before_price : string | number | undefined
 };
 export default function CardProduct({image, name, currentValue, before_price}: Props) {
+    const { products } = useBasketStore();
 
-    return <>
+    return <><pre>{JSON.stringify(products, null, 3)}</pre>
         <div className="card border-0 shadow">
             {image && <img src={`data:image/png;base64,${image}`} className="card-img-top" alt="Ofertas"/>}
         </div>

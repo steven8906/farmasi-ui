@@ -1,5 +1,5 @@
 import "./styles/_login.scss";
-import LogoFarmasi from "../../../infrastructure/assets/img/logo.png";
+import logo from "../../../infrastructure/assets/img/logo-anaue.png";
 import {useNavigate} from "react-router-dom";
 import routesPath from "../../../infrastructure/router/routes-path";
 import useLogin from "./use-cases/use-login";
@@ -12,7 +12,7 @@ export default function Login() {
         <main className={"bg-primary-light"}>
             <section className={"row justify-content-center align-items-center h-100 container m-auto"}>
                 <div className={"col-sm-12 col-md-4 m-auto p-5"}>
-                    <img src={LogoFarmasi} className={"d-block w-100"} alt={"Logo"}/>
+                    <img src={logo} className={"d-block w-100"} alt={"Logo"}/>
                     <br/>
                     <p>Serás parte de una comunidad de Beauty Influencers, una comunidad de cientos de miles de personas
                         que trabajan para cambiar vidas.</p>

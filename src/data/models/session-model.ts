@@ -4,16 +4,24 @@ export default interface SessionModel {
     permissions          : Permission[];
     role_has_permissions : PermissionHasRole[];
     role_has_model       : RolesHasModel[];
+    plan_prices          : PlanPrices;
 }
 
 export interface Token {
     accessToken : string;
     token       : TokenInfo;
 }
+
 export interface RolesHasModel {
     role_id:    number;
     model_type: string;
     model_id:   number;
+}
+
+export interface PlanPrices {
+    one   : number;
+    two   : number;
+    three : number;
 }
 
 export interface User {

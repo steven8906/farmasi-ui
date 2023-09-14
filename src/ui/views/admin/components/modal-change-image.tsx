@@ -4,6 +4,7 @@ import {Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
 import httpServices from "../../../../application/services/http-services";
 import {toast} from "react-toastify";
 import HttpMessages from "../../../../cross-cutting/http-messages";
+import useSession from "../../../../application/use-cases/use-session";
 
 type Props = {
     children : React.ReactNode;
@@ -14,6 +15,7 @@ type Props = {
 export default function ModalChangeImage({children, product, callback}: Props) {
     const [open, setOpen]       = React.useState(false);
     const [image, changeImagen] = React.useState<File>();
+    const { getHeaderAuth } = useSession();
 
 
     const handleClickOpen = () => setOpen(true);
@@ -32,6 +34,7 @@ export default function ModalChangeImage({children, product, callback}: Props) {
         httpServices.post<FormData, { data: string }>({
             action : 'products/change-image',
             data   : form,
+            ...getHeaderAuth()
         }).then(()=> {
             callback();
             handleClose();
