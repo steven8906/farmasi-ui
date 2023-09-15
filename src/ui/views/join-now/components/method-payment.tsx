@@ -36,22 +36,22 @@ export default function MethodPayment() {
                                                               onChange={onChange}/>}
                                               label="Transferencia bancaria"/>
                         </div>
-                        <div
-                            className={"cursor-pointer__hover method-payment__radio-item col-sm-12 col-md-8 col-lg-auto border-1 border-dark-subtle border-radius-10 "}>
-                            <FormControlLabel value="tigo-money"
-                                              control={<Radio color={"error"}
-                                                              checked={methodPayment === 'tigo-money'}
-                                                              onChange={onChange}/>}
-                                              label="Tigo Money"/>
-                        </div>
-                        <div
-                            className={"cursor-pointer__hover method-payment__radio-item col-sm-12 col-md-8 col-lg-auto border-1 border-dark-subtle border-radius-10 "}>
-                            <FormControlLabel value="personal-cash"
-                                              control={<Radio color={"error"}
-                                                              checked={methodPayment === 'personal-cash'}
-                                                              onChange={onChange}/>}
-                                              label="Billetera Personal"/>
-                        </div>
+                        {/*<div*/}
+                        {/*    className={"cursor-pointer__hover method-payment__radio-item col-sm-12 col-md-8 col-lg-auto border-1 border-dark-subtle border-radius-10 "}>*/}
+                        {/*    <FormControlLabel value="tigo-money"*/}
+                        {/*                      control={<Radio color={"error"}*/}
+                        {/*                                      checked={methodPayment === 'tigo-money'}*/}
+                        {/*                                      onChange={onChange}/>}*/}
+                        {/*                      label="Tigo Money"/>*/}
+                        {/*</div>*/}
+                        {/*<div*/}
+                        {/*    className={"cursor-pointer__hover method-payment__radio-item col-sm-12 col-md-8 col-lg-auto border-1 border-dark-subtle border-radius-10 "}>*/}
+                        {/*    <FormControlLabel value="personal-cash"*/}
+                        {/*                      control={<Radio color={"error"}*/}
+                        {/*                                      checked={methodPayment === 'personal-cash'}*/}
+                        {/*                                      onChange={onChange}/>}*/}
+                        {/*                      label="Billetera Personal"/>*/}
+                        {/*</div>*/}
                     </RadioGroup>
                 </div>
                 <div className={"d-flex justify-content-center mt-3"}>

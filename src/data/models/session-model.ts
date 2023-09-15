@@ -5,6 +5,7 @@ export default interface SessionModel {
     role_has_permissions : PermissionHasRole[];
     role_has_model       : RolesHasModel[];
     plan_prices          : PlanPrices;
+    config               : Config;
 }
 
 export interface Token {
@@ -34,6 +35,24 @@ export interface PermissionHasRole {
     role_id:       number;
 }
 
+export interface Config {
+    id                      : number
+    name_bank               : string
+    name_owner_account_bank : string
+    number_account_bank     : string
+    type_account_bank       : string
+    one_plan                : string
+    two_plan                : string
+    three_plan              : string
+    banner_image_one        : string
+    banner_image_two        : string
+    banner_image_three      : string
+    bottom_banner_image     : string
+    percent                 : string
+    text_bottom_banner      : string
+    created_at              : Date | null
+    updated_at              : Date | null
+}
 
 export interface TokenInfo {
     id          : string;

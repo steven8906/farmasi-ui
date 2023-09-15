@@ -41,6 +41,7 @@ export default function MainRouter() {
                     <Route path={routesPath.HOME} element={<Layout><Home/></Layout>}/>
                     <Route path={routesPath.PLANS} element={<Layout><Plans/></Layout>}/>
                     <Route path={routesPath.JOIN_NOW} element={<Layout><JoinNow/></Layout>}/>
+                    <Route path={`${routesPath.JOIN_NOW}/:plan`} element={<Layout><JoinNow/></Layout>}/>
                     <Route path={routesPath.STORE} element={<Layout><Store/></Layout>}/>
                     <Route path={routesPath.SHOP} element={<Layout><Shop/></Layout>}/>
                     <Route path={routesPath.BI} element={<Layout><Bi/></Layout>}/>

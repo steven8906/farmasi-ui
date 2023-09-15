@@ -2,7 +2,7 @@ import {useNavigate} from "react-router-dom";
 import routesPath from "../../../../infrastructure/router/routes-path";
 
 export default function Confirmation() {
-    const navigate    = useNavigate();
+    const navigate = useNavigate();
 
     return (
         <>

@@ -24,6 +24,7 @@ export default function ListProducts({title, data, sizePages = 12, setPage, type
                                 <CardProduct image={x.image}
                                              name={x.name}
                                              currentValue={x.price_a}
+                                             product={x}
                                              before_price={x.before_price}/>
                             </div>)}
                     </div>

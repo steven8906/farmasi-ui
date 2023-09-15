@@ -6,12 +6,44 @@ import useLoginStore from "../../../application/store/use-login-store";
 import SessionModel from "../../../data/models/session-model";
 import useSession from "../../../application/use-cases/use-session";
 import {currencyFormatter} from "../../../cross-cutting/utils";
+import useBasketStore from "../../../application/store/use-basket-store";
+import BasketStoreModel from "../../../data/models/basket-store-model";
+import {Product} from "../../../data/models/product-model";
 
 export default function NavbarLogged() {
     type StateType              = { session: SessionModel, setSession: (data: SessionModel) => void }
+    type ProductBasketType      = ({ id: number, name: string, image: string|undefined, quantity: number })
+    type BasketType             = { basket: BasketStoreModel, setBasket: (basket: BasketStoreModel) => void }
     const navigate              = useNavigate();
     const {session, setSession} = useLoginStore(state => state as StateType);
+    const {basket, setBasket}   = useBasketStore(state => state) as unknown as BasketType;
     const {getPlan}             = useSession();
+
+    function cleanBasket(products: Product[]): ProductBasketType[] {
+        const copySet                 = new Set([...products]) as Set<Product>;
+        const data: ProductBasketType[] = [];
+        copySet.forEach(x => {
+            const quantity = products.filter(prod => prod.id === x.id).length;
+            const productBasket: ProductBasketType = {
+                quantity,
+                id: x.id,
+                name: x.name,
+                image: x.image
+            };
+            data.push(productBasket);
+        });
+        const dataReturn: ProductBasketType[] = [];
+        data.forEach(x => {
+            if (!dataReturn.some(ret => ret.id === x.id)) dataReturn.push(x)
+        });
+        return dataReturn;
+    }
+
+    function sum(products: Product[]):number {
+        let total = 0;
+        products.forEach(x => total+= parseFloat(x.price_a));
+        return total;
+    }
 
     return (<>
         <nav className="navbar navbar-expand-lg py-2">
@@ -50,18 +82,56 @@ export default function NavbarLogged() {
                                 <i className='bx bx-search-alt'/>
                             </span>
                     </div>
-                    <a className={"font-size-16 btn__alert px-5"}  onClick={()=> navigate(RoutesPath.SHOP)}>Tienda</a>
+                    <button type={"submit"}
+                            className={"border-0 font-size-16 btn__alert"}
+                            onClick={()=> navigate(RoutesPath.SHOP)}>Tienda
+                    </button>
+
+                    {basket.products.length > 0 && <div className="dropdown">
+                        <a className="btn btn-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i className='bx bx-shopping-bag font-size-25 align-middle' style={{color: 'gray'}}/>
+                            <span className="badge text-white bg-primary">{basket.products.length}</span>
+                        </a>
+
+                        <ul className="dropdown-menu">
+                            {cleanBasket(basket.products).map((x, index) =>
+                                <li key={`basket-${index}`} className={"d-flex justify-content-between align-items-center"}>
+                                    <img src={`data:image/png;base64,${x.image}`} alt={"producto"} width={50}/>
+                                    <span className={"dropdown-item"}>{x.quantity} - {x.name}</span>
+                                </li>
+                            )}
+                            { basket.products.length > 0 && <li className={"text-center border-top"}>
+                                <span className={"dropdown-item"}>
+                                    <p className={"text-bold"}>Total productos: {currencyFormatter(sum(basket.products))}</p>
+                                    <p className={"text-bold"}>Total crédito: -{currencyFormatter(getPlan())}</p>
+                                    <p className={"text-bold border-top"}>Total compra: {currencyFormatter(sum(basket.products) - getPlan())}</p>
+                                </span>
+                            </li>}
+                            <li className={"text-center border-top"}>
+                                <button className={"dropdown-item"}
+                                        type={"button"}
+                                        onClick={()=> navigate(`${RoutesPath.JOIN_NOW}/compra`)}>
+                                    {(sum(basket.products) - getPlan() < 0) ? 'Debe completar su crédito para finalizar la compra' : 'Finalizar compra'}
+                                </button>
+                            </li>
+                        </ul>
+                    </div>}
+
                     <div className="dropdown">
-                        <button className="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i className='bx bx-shopping-bag font-size-25 me-3 align-middle' style={{color:'gray'}}/>
+                        <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             <span className={"align-middle"}>{session?.user?.user}</span>
-                            <span className={"align-middle"}> - Crédito: {currencyFormatter(getPlan())}</span>
+                            { basket.products.length > 0 && <span className={"align-middle"}> - Crédito: {currencyFormatter(getPlan())}</span>}
                         </button>
                         <ul className="dropdown-menu">
                             <li>
                                 <button className="dropdown-item"
-                                        onClick={()=> setSession({} as SessionModel)}
-                                        type={"button"}>Cerrar Sesión</button>
+                                        onClick={()=> {
+                                            setSession({} as SessionModel);
+                                            setBasket({ products: [] } as BasketStoreModel)
+                                        }}
+                                        type={"button"}>Cerrar Sesión
+                                </button>
                             </li>
                         </ul>
                     </div>

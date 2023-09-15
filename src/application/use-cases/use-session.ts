@@ -10,7 +10,11 @@ export default function useSession() {
         3: 'two',
         4: 'three',
     }
-
+    const namePlanRole: Record<number, string> = {
+        2: 'plan_one',
+        3: 'plan_two',
+        4: 'plan_three',
+    }
     function isLogged(): boolean {
         return Object.keys(session).length > 0
     }
@@ -27,11 +31,13 @@ export default function useSession() {
     }
 
     const getPlan = (): number => (session.plan_prices as { [plan: string]: any })[planPrices[session.role_has_model[0].role_id]];
+    const getNamePlanRole = (): string => namePlanRole[session.role_has_model[0].role_id];
 
     return {
         planPrices,
         isLogged,
         getHeaderAuth,
         getPlan,
+        getNamePlanRole,
     }
 }

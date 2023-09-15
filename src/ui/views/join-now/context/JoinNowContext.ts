@@ -14,7 +14,8 @@ interface JoinNowContextModel {
     sendPayment      : SendPaymentModel;
     setSendPayment   : Dispatch<SetStateAction<SendPaymentModel>>;
     creditData       : CreditModel;
-    setCreditData   : Dispatch<SetStateAction<CreditModel>>;
+    setCreditData    : Dispatch<SetStateAction<CreditModel>>;
+    byRoute          : boolean;
 }
 
 const JoinNowContext = createContext<JoinNowContextModel>({} as JoinNowContextModel);

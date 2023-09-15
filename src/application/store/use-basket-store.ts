@@ -4,7 +4,9 @@ import {createJSONStorage, persist} from "zustand/middleware";
 
 const useBasketStore = create<BasketStoreModel>(persist(
     (set) => ({
-        products: [],
+        basket:{
+            products: []
+        },
         setBasket: (basket: BasketStoreModel) => set(() => ({basket})),
     }),
     {

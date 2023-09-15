@@ -13,6 +13,8 @@ export default function JoinNow() {
         setMethodPayment,
         setSendPayment,
         setCreditData,
+        planRoute,
+        byRoute,
         creditData,
         step,
         formRegister,
@@ -33,6 +35,7 @@ export default function JoinNow() {
                 formRegister,
                 methodPayment,
                 sendPayment,
+                byRoute,
             }}>
                 <section className={"bg-primary-light"}>
                     <Stepper/>
@@ -40,10 +43,18 @@ export default function JoinNow() {
                         <hr/>
                     </div>
                     <div className={"py-3"}>
-                        {step === 1 && <Register/>}
-                        {step === 2 && <MethodPayment/>}
-                        {step === 3 && <SendPayment/>}
-                        {step === 4 && <Confirmation />}
+                        {!planRoute ?
+                            <>
+                                {step === 1 && <Register/>}
+                                {step === 2 && <MethodPayment/>}
+                                {step === 3 && <SendPayment/>}
+                                {step === 4 && <Confirmation/>}
+                            </> :
+                            <>
+                                {step === 2 && <MethodPayment/>}
+                                {step === 3 && <SendPayment/>}
+                                {step === 4 && <Confirmation/>}
+                            </>}
                     </div>
                 </section>
             </JoinNowContext.Provider>

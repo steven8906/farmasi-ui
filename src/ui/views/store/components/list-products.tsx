@@ -13,6 +13,7 @@ export default function ListProducts({title, products}: { title: string, product
                             <CardProduct image={x.image}
                                          name={x.name}
                                          currentValue={x.price_a}
+                                         product={x}
                                          before_price={x.before_price}/>
                         </div>)}
                 </div>
