@@ -119,7 +119,7 @@ export default function NavbarLogged() {
                             <li className={"text-center border-top"}>
                                 <button className={"dropdown-item"}
                                         type={"button"}
-                                        onClick={()=> navigate(`${RoutesPath.JOIN_NOW}/compra`)}>
+                                        onClick={()=> !(sum(basket.products) - getPlan() < 0) && navigate(`${RoutesPath.JOIN_NOW}/compra`)}>
                                     {(sum(basket.products) - getPlan() < 0) ? 'Debe completar su crédito para finalizar la compra' : 'Finalizar compra'}
                                 </button>
                             </li>
