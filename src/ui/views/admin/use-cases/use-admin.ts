@@ -6,7 +6,6 @@ import SectionShopType from "../../../../data/types/section-shop-type";
 import FormModel from "../models/form-model";
 import SearchModel from "../../../../data/models/search-model";
 import useSession from "../../../../application/use-cases/use-session";
-import {Config} from "../../../../data/models/session-model";
 import {toast} from "react-toastify";
 import HttpMessages from "../../../../cross-cutting/http-messages";
 
@@ -21,18 +20,31 @@ export type Banner = {
     banner_image_two        : string
     banner_image_three      : string
     bottom_banner_image     : string
+    percent                 : number|string
+    text_bottom_banner      : string
+}
+export type Downloads = {
+    download_one_url  : string
+    download_one_name : string
+    download_two_url  : string
+    download_two_name : string
 }
 export default function () {
     const [products, setProducts]                 = useState<PaginateResponse<Product[]> | undefined>(undefined);
     const [originalProducts, setOriginalProducts] = useState<PaginateResponse<Product[]> | undefined>(undefined);
     const [form, setForm]                         = useState<FormModel>({} as FormModel);
-    const [formDataBank, setFormDataBank]         = useState<FormBank>({} as FormBank);
-    const [formDataBanner, setFormDataBanner]     = useState<Banner>({} as Banner);
-    const {getHeaderAuth}                         = useSession();
+    const {
+        getHeaderAuth,
+        getConfig,
+        setFormDataBank,
+        setDataDownloads,
+        formDataBank,
+        formDataBanner,
+        formDataDownloads,
+    } = useSession();
 
     useEffect(() => {
         getProducts();
-        getConfig();
     }, [])
 
     function getProducts(type: SectionShopType = 'ALL', page = 1): void {
@@ -40,26 +52,6 @@ export default function () {
             .then(res => {
                 setProducts(res.data);
                 setOriginalProducts(res.data);
-            })
-    }
-
-    function getConfig(): void {
-        httpServices.getNoPaginate<ResponseModel<Config>>({action: 'products/config', ...getHeaderAuth()})
-            .then(res => {
-                const dataBank: FormBank = {
-                    name_bank               : res.data.data.name_bank,
-                    name_owner_account_bank : res.data.data.name_owner_account_bank,
-                    number_account_bank     : res.data.data.number_account_bank,
-                    type_account_bank       : res.data.data.type_account_bank,
-                };
-                const dataBanner: Banner = {
-                    banner_image_one    : res.data.data.banner_image_one,
-                    banner_image_two    : res.data.data.banner_image_two,
-                    banner_image_three  : res.data.data.banner_image_three,
-                    bottom_banner_image : res.data.data.bottom_banner_image,
-                };
-                setFormDataBank(dataBank);
-                setFormDataBanner(dataBanner);
             })
     }
 
@@ -102,11 +94,15 @@ export default function () {
         products,
         formDataBank,
         formDataBanner,
+        formDataDownloads,
+        setDataDownloads,
         setState,
         onChange,
         search,
         getProducts,
+        getConfig,
         onFormBankChange,
         saveBank,
+        getHeaderAuth,
     }
 }

@@ -15,11 +15,9 @@ type Props = {
 export default function ModalChangeImage({children, product, callback}: Props) {
     const [open, setOpen]       = React.useState(false);
     const [image, changeImagen] = React.useState<File>();
-    const { getHeaderAuth } = useSession();
-
-
-    const handleClickOpen = () => setOpen(true);
-    const handleClose     = () => setOpen(false);
+    const {getHeaderAuth}       = useSession();
+    const handleClickOpen       = () => setOpen(true);
+    const handleClose           = () => setOpen(false);
 
     function changeImage(ev: ChangeEvent<HTMLInputElement>): void {
         if (ev.target && ev.target.files && ev.target.files.length > 0) {

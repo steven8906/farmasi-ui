@@ -1,15 +1,15 @@
-import BannerOne from "../../../../infrastructure/assets/img/banner-1.png";
-import BannerTwo from "../../../../infrastructure/assets/img/banner-2.png";
-import BannerThree from "../../../../infrastructure/assets/img/banner-3.png";
 import "../styles/_promo.scss";
 import Carousel from "nuka-carousel";
+import {buildFileUrl} from "../../../../cross-cutting/utils";
+import {Banner} from "../../admin/use-cases/use-admin";
 
-export default function Hero() {
+type Props = {formDataBanner: Banner};
+export default function Hero({formDataBanner} : Props) {
     return <>
         <Carousel defaultControlsConfig={{nextButtonText:'>', prevButtonText:'<'}}>
-            <img src={BannerOne} className={"w-100"} alt={""}/>
-            <img src={BannerTwo} className={"w-100"} alt={""}/>
-            <img src={BannerThree} className={"w-100"} alt={""}/>
+            <img src={buildFileUrl(formDataBanner.banner_image_one)} className={"w-100"} alt={""}/>
+            <img src={buildFileUrl(formDataBanner.banner_image_two)} className={"w-100"} alt={""}/>
+            <img src={buildFileUrl(formDataBanner.banner_image_three)} className={"w-100"} alt={""}/>
         </Carousel>
     </>
 }

@@ -1,5 +1,5 @@
 import Hero from "./components/hero";
-import Downloads from "./components/downloads";
+import Downloads from "./components/downloads-section";
 import Promo from "./components/promo";
 import {useEffect, useState} from "react";
 import httpServices from "../../../application/services/http-services";
@@ -9,13 +9,19 @@ import ListProducts from "./components/list-products";
 import useSession from "../../../application/use-cases/use-session";
 
 export default function Store(){
-    const [products, setProductList]           = useState<Product[]>([]);
-    const [productsPromo, setProductListPromo] = useState<Product[]>([]);
-    const {getHeaderAuth}                      = useSession();
+    const [products, setProductList]                 = useState<Product[]>([]);
+    const [productsPromo, setProductListPromo]       = useState<Product[]>([]);
+    const {
+        getHeaderAuth,
+        formDataBanner,
+        getConfig,
+        formDataDownloads
+    } = useSession();
 
     useEffect(() => {
         getProducts();
         getProductsPromo();
+        getConfig();
     }, [])
 
     function getProducts(): void {
@@ -29,10 +35,10 @@ export default function Store(){
     }
 
     return <>
-        <Hero/>
-        <Downloads/>
+        <Hero formDataBanner={formDataBanner}/>
+        <Downloads dataDownloads={formDataDownloads}/>
         <ListProducts title={"¡Novedades!"} products={products}/>
-        <Promo/>
+        <Promo formDataBanner={formDataBanner}/>
         <ListProducts title={"¡Promociones!"} products={productsPromo}/>
     </>
 }

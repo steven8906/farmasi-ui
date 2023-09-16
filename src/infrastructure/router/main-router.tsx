@@ -12,26 +12,11 @@ import Loading from "../../ui/components/loading";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Admin from "../../ui/views/admin/admin";
-import useLoginStore from "../../application/store/use-login-store";
-import SessionModel, {Permission} from "../../data/models/session-model";
 import NotFound from "../../ui/views/not-found/not-found";
+import useSession from "../../application/use-cases/use-session";
 
 export default function MainRouter() {
-    const session: SessionModel = useLoginStore(state => state.session);
-
-    function checkPermission(permission: string): boolean {
-        if (Object.keys(session).length > 0) {
-            const permissionData = session.permissions.find(x => x.name === permission) as Permission;
-            const roles = session.role_has_model.filter(x => x.model_id === session.user.id);
-            let allow = false;
-            roles.forEach(role => {
-                const rolesWithPermission = session.role_has_permissions.filter(x => x.permission_id === permissionData.id);
-                if (rolesWithPermission.some(x => x.role_id === role.role_id)) allow = true;
-            })
-            return allow
-        }
-        return false;
-    }
+    const { checkPermission } = useSession();
 
     return (
         <>

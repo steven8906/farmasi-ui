@@ -5,3 +5,5 @@ export function currencyFormatter(value: number): string {
 export function validateAlphabetic(text: string):string {
     return text.replace(/[a-zA-Z]+/g, '');
 }
+
+export const buildFileUrl = (nameFile: string): string => `${import.meta.env.VITE_APP_LARAVEL}/${nameFile}`;

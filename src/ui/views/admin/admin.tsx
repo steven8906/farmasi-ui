@@ -1,18 +1,30 @@
 import useAdmin from "./use-cases/use-admin";
 import {Avatar} from "@mui/material";
 import ModalChangeImage from "./components/modal-change-image";
+import BannerAdmin from "./components/banner-admin";
+import DownloadsAdmin from "./components/downloads-admin";
+import {useEffect} from "react";
 
 export default function Admin() {
     const {
         products,
         formDataBank,
+        formDataBanner,
+        formDataDownloads,
         setState,
         saveBank,
         onChange,
         search,
         getProducts,
-        onFormBankChange
+        getConfig,
+        onFormBankChange,
+        getHeaderAuth,
     } = useAdmin();
+
+    useEffect(()=> {
+        getConfig();
+    }, [])
+
     return <>
         <div className="accordion w-75 my-5 m-auto" id="accordion-config">
             <div className="accordion-item">
@@ -174,19 +186,35 @@ export default function Admin() {
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapse-banners">
-                        Banner's (Publicidad).
+                        Banner's (Publicidad)
                     </button>
                 </h2>
                 <div id="collapse-banners"
                      className="accordion-collapse collapse"
                      data-bs-parent="#accordion-config">
                     <div className="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
-                        collapse plugin adds the appropriate classes that we use to style each element. These classes
-                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
-                        that just about any HTML can go within the <code>.accordion-body</code>, though the transition
-                        does limit overflow.
+                        <BannerAdmin dataBanner={formDataBanner}
+                                     refreshData={getConfig}
+                                     getHeaderAuth={getHeaderAuth}/>
+                    </div>
+                </div>
+            </div>
+            <div className="accordion-item">
+                <h2 className="accordion-header">
+                    <button className="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapse-downloads">
+                        Descargas
+                    </button>
+                </h2>
+                <div id="collapse-downloads"
+                     className="accordion-collapse collapse"
+                     data-bs-parent="#accordion-config">
+                    <div className="accordion-body">
+                        <DownloadsAdmin dataDownloads={formDataDownloads}
+                                        refreshData={getConfig}
+                                        getHeaderAuth={getHeaderAuth}/>
                     </div>
                 </div>
             </div>

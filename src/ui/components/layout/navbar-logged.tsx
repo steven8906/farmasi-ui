@@ -11,13 +11,13 @@ import BasketStoreModel from "../../../data/models/basket-store-model";
 import {Product} from "../../../data/models/product-model";
 
 export default function NavbarLogged() {
-    type StateType              = { session: SessionModel, setSession: (data: SessionModel) => void }
-    type ProductBasketType      = ({ id: number, name: string, image: string|undefined, quantity: number })
-    type BasketType             = { basket: BasketStoreModel, setBasket: (basket: BasketStoreModel) => void }
-    const navigate              = useNavigate();
-    const {session, setSession} = useLoginStore(state => state as StateType);
-    const {basket, setBasket}   = useBasketStore(state => state) as unknown as BasketType;
-    const {getPlan}             = useSession();
+    type StateType                   = { session : SessionModel, setSession: (data: SessionModel) => void }
+    type ProductBasketType           = ({ id: number, name: string, image: string | undefined, quantity: number })
+    type BasketType                  = { basket  : BasketStoreModel, setBasket: (basket: BasketStoreModel) => void }
+    const navigate                   = useNavigate();
+    const {session, setSession}      = useLoginStore(state => state as StateType);
+    const {basket, setBasket}        = useBasketStore(state => state) as unknown as BasketType;
+    const {getPlan}                  = useSession();
 
     function cleanBasket(products: Product[]): ProductBasketType[] {
         const copySet                 = new Set([...products]) as Set<Product>;
@@ -84,7 +84,15 @@ export default function NavbarLogged() {
                     </div>
                     <button type={"submit"}
                             className={"border-0 font-size-16 btn__alert"}
-                            onClick={()=> navigate(RoutesPath.SHOP)}>Tienda
+                            onClick={()=> navigate(RoutesPath.SHOP)}>Productos
+                    </button>
+                    <button type={"submit"}
+                            className={"border-0 font-size-16 btn__alert"}
+                            onClick={()=> navigate(RoutesPath.STORE)}>Tienda
+                    </button>
+                    <button type={"button"}
+                            className={"btn btn-link"}
+                            onClick={()=> navigate(RoutesPath.ADMIN)}>Zona Admin
                     </button>
 
                     {basket.products.length > 0 && <div className="dropdown">

@@ -48,8 +48,12 @@ export interface Config {
     banner_image_two        : string
     banner_image_three      : string
     bottom_banner_image     : string
-    percent                 : string
+    percent                 : string | number
     text_bottom_banner      : string
+    download_one_url        : string
+    download_one_name       : string
+    download_two_url        : string
+    download_two_name       : string
     created_at              : Date | null
     updated_at              : Date | null
 }

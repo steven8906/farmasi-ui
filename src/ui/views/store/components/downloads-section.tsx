@@ -1,7 +1,10 @@
 import BookOne from "../../../../infrastructure/assets/img/book-1.png";
 import BookTwo from "../../../../infrastructure/assets/img/book-2.png";
+import {Downloads} from "../../admin/use-cases/use-admin";
+import {buildFileUrl} from "../../../../cross-cutting/utils";
 
-export default function Downloads(){
+type Props = { dataDownloads: Downloads }
+export default function DownloadsSection({dataDownloads}: Props) {
     return <>
         <section className={"bg-primary-light"}>
             <div className={"d-flex flex-wrap container justify-content-center py-5 gap-5"}>
@@ -10,12 +13,13 @@ export default function Downloads(){
                         <img src={BookOne} alt={""} width={250}/>
                     </div>
                     <div className={"d-flex flex-column align-items-center"}>
-                        <button className={"btn btn-primary text-white font-semi-bold px-5"}>
+                        <a className={"btn btn-primary text-white font-semi-bold px-5"}
+                           href={buildFileUrl(dataDownloads.download_one_url)}
+                           target={"_blank"}>
                             <span className={"align-middle"}>Descargar</span>
                             <i className='bx bxs-download align-middle'/>
-                        </button>
-                        <p className={"text-dark font-regular"}>Catálogo Digital</p>
-                        <p className={"text-dark font-light"}>Edic. 01</p>
+                        </a>
+                        <p className={"text-dark font-regular"}>{dataDownloads.download_one_name}</p>
                     </div>
                 </div>
                 <div className={"d-flex align-items-center"}>
@@ -23,12 +27,13 @@ export default function Downloads(){
                         <img src={BookTwo} alt={""} width={250}/>
                     </div>
                     <div className={"d-flex flex-column align-items-center"}>
-                        <button className={"btn btn-primary text-white font-semi-bold px-5"}>
+                        <a className={"btn btn-primary text-white font-semi-bold px-5"}
+                           href={buildFileUrl(dataDownloads.download_two_url)}
+                           target={"_blank"}>
                             <span className={"align-middle"}>Descargar</span>
                             <i className='bx bxs-download align-middle'/>
-                        </button>
-                        <p className={"text-dark font-regular"}>Guia de Oportunidades</p>
-                        <p className={"text-dark font-light"}>Revista</p>
+                        </a>
+                        <p className={"text-dark font-regular"}>{dataDownloads.download_two_name}</p>
                     </div>
                 </div>
             </div>
