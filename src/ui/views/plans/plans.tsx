@@ -32,14 +32,16 @@ export default function Plans() {
                         </div>
                         <div className={"p-4 border-1 border-dark border-radius-10 bg-white"}>
                             <div>
-                                <div className={"py-3"}>
-                                    <p><b> sad </b> </p>
-                                    <p><b> as </b> </p>
-                                    <p><b>  </b> </p>
-                                    <p><b>  </b> </p>
-                                    <p><b>  </b> </p>
-                                    <p><b>  </b> </p>
-                                    <p><b>  </b> </p>
+                                <div className={"py-3 text-start"}>
+                                    <p><b>Al suscribirte, tendrás acceso a un mundo de ventajas:</b> </p>
+                                    <p><b>Catálogo en Línea Exclusivo: </b> Obtén un crédito de 360.000 Gs. Para explorar nuestro catálogo en línea y escoger los productos que mas te gusten.</p>
+                                    <p><b>Descuento del 40%: </b> Todos los productos en nuestro catálogo tienen un increíble descuento del 40%.</p>
+                                    <p><b>Pago Único: </b> Tu suscripción se paga una sola vez, sin cargos recurrentes.</p>
+                                    <p><b>Compra Mínima Mensual:</b> Para mantener tu membresía activa, solo necesitas realizar una compra mínima mensual de 360.000 Gs.</p>
+                                    <p><b>Recursos Valiosos: </b> Descarga nuestro catálogo en PDF y accede a la guía del negocio.</p>
+                                    <p><b>Ofertas Mensuales: </b> Además, disfruta de promociones, desafíos y descuentos exclusivos que cambian cada mes.</p>
+                                    <br/>
+                                    <p>¡No te pierdas esta oportunidad! Únete a nosotros y experimenta el mundo de posibilidades que te ofrecemos.</p>
                                 </div>
 
                                 <button className={"btn text-dark border-radius-25"}
