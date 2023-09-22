@@ -4,6 +4,7 @@ export interface Product {
     id            : number
     cod           : string
     name          : string
+    category      : string
     stock         : number
     price_a       : string
     price_b       : string

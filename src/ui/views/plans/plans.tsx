@@ -7,10 +7,14 @@ import {useNavigate} from "react-router-dom";
 import RoutesPath from "../../../infrastructure/router/routes-path";
 import Plan from "../../../cross-cutting/plans";
 import useAppContext from "../../../application/use-cases/use-app-context";
+//TODO:Pendiente por definir
+// import useLoginStore from "../../../application/store/use-login-store";
+// import SessionModel from "../../../data/models/session-model";
 
 export default function Plans() {
-    const navigate = useNavigate();
-    const { setPlan } = useAppContext();
+    const navigate  = useNavigate();
+    const {setPlan} = useAppContext();
+    //const {config_plans}  = useLoginStore(state => state.session as SessionModel);
 
     return (
         <>

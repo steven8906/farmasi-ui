@@ -90,6 +90,22 @@ export default function () {
         }).then(() => toast(HttpMessages.OkRequest, {type: 'success'}))
     }
 
+    function onChangeCategory(ev:ChangeEvent<HTMLSelectElement>, product:Product):void {
+        ev.preventDefault();
+        if (confirm('¿En verdad desea cambiar el registro?')){
+            const {value : category}   = ev.target;
+            const {id    : id_product} = product;
+            httpServices.post<{ category:string, id_product:number }, ResponseModel<boolean>>({
+                action: 'products/change-category',
+                data: { category, id_product },
+                ...getHeaderAuth()
+            }).then(() => {
+                toast(HttpMessages.OkRequest, {type: 'success'});
+                getProducts();
+            });
+        }
+    }
+
     return {
         products,
         formDataBank,
@@ -104,5 +120,6 @@ export default function () {
         onFormBankChange,
         saveBank,
         getHeaderAuth,
+        onChangeCategory,
     }
 }

@@ -19,6 +19,7 @@ export default function Admin() {
         getConfig,
         onFormBankChange,
         getHeaderAuth,
+        onChangeCategory,
     } = useAdmin();
 
     useEffect(()=> {
@@ -61,6 +62,7 @@ export default function Admin() {
                                         <tr>
                                             <th scope="col">Código</th>
                                             <th scope="col">Producto</th>
+                                            <th scope="col">Categoría</th>
                                             <th scope="col">Imagen</th>
                                         </tr>
                                         </thead>
@@ -69,6 +71,17 @@ export default function Admin() {
                                             <tr key={`product-${index}`}>
                                                 <th scope="row">{x.cod}</th>
                                                 <td>{x.name}</td>
+                                                <td>
+                                                    <select className={"form-select"}
+                                                            value={x.category}
+                                                            onChange={ev => onChangeCategory(ev, x)}
+                                                            name={"category"}>
+                                                        <option value={"ALL"}>All</option>
+                                                        <option value={"MAQUILLAJE"}>Maquillaje</option>
+                                                        <option value={"CUIDADO_PIEL"}>Cuidado de la piel</option>
+                                                        <option value={"MERCH"}>Merch</option>
+                                                    </select>
+                                                </td>
                                                 <td className={"d-flex justify-content-center"}>
                                                     <ModalChangeImage product={x} callback={()=> getProducts('ALL', products?.paginate.current_page)}>
                                                         <Avatar alt={x.name}

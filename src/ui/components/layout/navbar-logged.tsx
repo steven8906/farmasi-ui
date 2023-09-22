@@ -1,5 +1,5 @@
-import LogoFarmasi from "../../../infrastructure/assets/img/logo.png";
-import {useNavigate} from "react-router-dom";
+import LogoFarmasi from "../../../infrastructure/assets/img/logo-anaue.png";
+import {useLocation, useNavigate} from "react-router-dom";
 import RoutesPath from "../../../infrastructure/router/routes-path";
 import "./navbar.scss";
 import useLoginStore from "../../../application/store/use-login-store";
@@ -11,13 +11,14 @@ import BasketStoreModel from "../../../data/models/basket-store-model";
 import {Product} from "../../../data/models/product-model";
 
 export default function NavbarLogged() {
-    type StateType                   = { session : SessionModel, setSession: (data: SessionModel) => void }
-    type ProductBasketType           = ({ id: number, name: string, image: string | undefined, quantity: number })
-    type BasketType                  = { basket  : BasketStoreModel, setBasket: (basket: BasketStoreModel) => void }
-    const navigate                   = useNavigate();
-    const {session, setSession}      = useLoginStore(state => state as StateType);
-    const {basket, setBasket}        = useBasketStore(state => state) as unknown as BasketType;
-    const {getPlan}                  = useSession();
+    type StateType              = { session : SessionModel, setSession: (data: SessionModel) => void }
+    type ProductBasketType      = ({ id: number, name: string, image: string | undefined, quantity: number })
+    type BasketType             = { basket  : BasketStoreModel, setBasket: (basket: BasketStoreModel) => void }
+    const navigate              = useNavigate();
+    const {pathname}            = useLocation();
+    const {session, setSession} = useLoginStore(state => state as StateType);
+    const {basket, setBasket}   = useBasketStore(state => state) as unknown as BasketType;
+    const {getPlan, checkPermission}             = useSession();
 
     function cleanBasket(products: Product[]): ProductBasketType[] {
         const copySet                 = new Set([...products]) as Set<Product>;
@@ -50,7 +51,7 @@ export default function NavbarLogged() {
             <div className={"w-85 d-flex m-auto pb-1"}>
                 <div className="container-fluid w-50">
                     <a className="navbar-brand cursor-pointer__hover" onClick={()=> navigate(RoutesPath.HOME)}>
-                        <img src={LogoFarmasi} alt="Logo" width="120" className="d-inline-block align-text-top"/>
+                        <img src={LogoFarmasi} alt="Logo" width="220" className="d-inline-block align-text-top"/>
                     </a>
                     <button className="navbar-toggler float-end" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
@@ -73,15 +74,15 @@ export default function NavbarLogged() {
                 </div>
 
                 <div className={"justify-content-end align-items-center w-100 d-none d-lg-flex gap-3"}>
-                    <div className="input-group flex-nowrap w-30 p-1 px-3 me-4"
-                         style={{ border:'1px solid #DBDBDB', borderRadius:'18px' }}>
+                    { pathname === RoutesPath.SHOP ? <div className="input-group flex-nowrap w-30 p-1 px-3 me-4"
+                          style={{border: '1px solid #DBDBDB', borderRadius: '18px'}}>
                         <input type="text"
                                className="form-control border-0 p-0"
-                               placeholder="Buscar producto." />
+                               placeholder="Buscar producto."/>
                         <span className="input-group-text bg-white border-0 p-0">
                                 <i className='bx bx-search-alt'/>
                             </span>
-                    </div>
+                    </div> : null}
                     <button type={"submit"}
                             className={"border-0 font-size-16 btn__alert"}
                             onClick={()=> navigate(RoutesPath.SHOP)}>Productos
@@ -90,10 +91,10 @@ export default function NavbarLogged() {
                             className={"border-0 font-size-16 btn__alert"}
                             onClick={()=> navigate(RoutesPath.STORE)}>Tienda
                     </button>
-                    <button type={"button"}
-                            className={"btn btn-link"}
-                            onClick={()=> navigate(RoutesPath.ADMIN)}>Zona Admin
-                    </button>
+                    { checkPermission('read:admin') ? <button type={"button"}
+                             className={"btn btn-link"}
+                             onClick={() => navigate(RoutesPath.ADMIN)}>Zona Admin
+                    </button> : null}
 
                     {basket.products.length > 0 && <div className="dropdown">
                         <a className="btn btn-link dropdown-toggle" href="#" role="button"

@@ -1,3 +1,5 @@
+import ConfigPlan from "./config-plan";
+
 export default interface SessionModel {
     token                : Token;
     user                 : User;
@@ -6,6 +8,7 @@ export default interface SessionModel {
     role_has_model       : RolesHasModel[];
     plan_prices          : PlanPrices;
     config               : Config;
+    config_plans         : ConfigPlan;
 }
 
 export interface Token {
