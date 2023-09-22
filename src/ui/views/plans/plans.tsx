@@ -25,8 +25,8 @@ export default function Plans() {
     return (
         <>
             <section className={"plans__main"}>
-                <div style={{...styleBg}} className={"d-flex flex-column align-items-center justify-content-center"}>
-                    <div className={"w-75 d-flex flex-column"}>
+                <div style={{...styleBg}} className={"pt-5 d-flex flex-column align-items-center justify-content-center"}>
+                    <div className={"w-65 d-flex flex-column mt-5"}>
                         <div className={"align-self-end w-25 me-5 p-1 bg-white border-1 border-dark border-bottom-0 rounded-top"}>
                             <div>¡'Unete ahora!</div>
                         </div>
