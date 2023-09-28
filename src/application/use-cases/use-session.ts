@@ -57,7 +57,7 @@ export default function useSession() {
     }
 
     function checkPermission(permission: string): boolean {
-        if (Object.keys(sessionStore).length > 0) {
+        if (Object.keys(sessionStore).length > 0 && typeof session?.user !== 'undefined') {
             const permissionData = sessionStore.permissions.find(x => x.name === permission) as Permission;
             const roles = sessionStore.role_has_model.filter(x => x.model_id === sessionStore.user.id);
             let allow = false;
