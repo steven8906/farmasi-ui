@@ -89,6 +89,7 @@ export default function useSession() {
         formDataBank,
         formDataBanner,
         formDataDownloads,
+        sessionStore,
         isLogged,
         getHeaderAuth,
         getPlan,

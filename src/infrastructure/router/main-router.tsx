@@ -16,7 +16,7 @@ import NotFound from "../../ui/views/not-found/not-found";
 import useSession from "../../application/use-cases/use-session";
 
 export default function MainRouter() {
-    const { checkPermission } = useSession();
+    const { sessionStore } = useSession();
 
     return (
         <>
@@ -30,8 +30,7 @@ export default function MainRouter() {
                     <Route path={routesPath.STORE} element={<Layout><Store/></Layout>}/>
                     <Route path={routesPath.SHOP} element={<Layout><Shop/></Layout>}/>
                     <Route path={routesPath.BI} element={<Layout><Bi/></Layout>}/>
-                    {checkPermission('read:admin') &&
-                        <Route path={routesPath.ADMIN} element={<Layout><Admin/></Layout>}/>}
+                    {sessionStore.user && sessionStore.user.user === 'System' && <Route path={routesPath.ADMIN} element={<Layout><Admin/></Layout>}/>}
                     <Route path={routesPath.LOGIN} element={<Layout outContainer={true}><Login/></Layout>}/>
                 </Routes>
             </HashRouter>

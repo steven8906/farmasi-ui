@@ -8,7 +8,6 @@ import RoutesPath from "../../../infrastructure/router/routes-path";
 import Plan from "../../../cross-cutting/plans";
 import bgPlan from "../../../infrastructure/assets/img/bg-plans.png";
 import useAppContext from "../../../application/use-cases/use-app-context";
-import useSession from "../../../application/use-cases/use-session";
 import useLoginStore from "../../../application/store/use-login-store";
 import SessionModel from "../../../data/models/session-model";
 //TODO:Pendiente por definir
@@ -19,7 +18,6 @@ export default function Plans() {
     const navigate  = useNavigate();
     const {setPlan} = useAppContext();
     //const {config_plans}  = useLoginStore(state => state.session as SessionModel);
-    const { isLogged } = useSession();
     const sessionStore: SessionModel = useLoginStore(state => state.session);
     const styleBg = {
         width           : '100vw',
