@@ -33,6 +33,7 @@ export default function () {
     const [products, setProducts]                 = useState<PaginateResponse<Product[]> | undefined>(undefined);
     const [originalProducts, setOriginalProducts] = useState<PaginateResponse<Product[]> | undefined>(undefined);
     const [form, setForm]                         = useState<FormModel>({} as FormModel);
+    const [isLoading, setIsLoading]               = useState<boolean>(false);
     const {
         getHeaderAuth,
         getConfig,
@@ -48,11 +49,13 @@ export default function () {
     }, [])
 
     function getProducts(type: SectionShopType = 'ALL', page = 1): void {
+        setIsLoading(true);
         httpServices.get<Product[]>({action: `products/${type}?page=${page}`, ...getHeaderAuth()})
             .then(res => {
                 setProducts(res.data);
                 setOriginalProducts(res.data);
             })
+            .finally(()=> setIsLoading(false));
     }
 
     const setState = (page: number) => getProducts('ALL', page);
@@ -111,6 +114,7 @@ export default function () {
         formDataBank,
         formDataBanner,
         formDataDownloads,
+        isLoading,
         setDataDownloads,
         setState,
         onChange,

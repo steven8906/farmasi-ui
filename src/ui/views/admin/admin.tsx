@@ -11,6 +11,7 @@ export default function Admin() {
         formDataBank,
         formDataBanner,
         formDataDownloads,
+        isLoading,
         setState,
         saveBank,
         onChange,
@@ -93,32 +94,47 @@ export default function Admin() {
                                         ))}
                                         </tbody>
                                     </table>
-                                    <div className={"d-flex justify-content-center my-5"}>
-                                        <nav>
-                                            <ul className="pagination">
-                                                <li className="page-item">
-                                                    <button className="page-link border-primary bg-primary text-white border-radius-10"
-                                                            type={"button"}
-                                                            onClick={() => setState(products?.paginate.current_page - 1)}>Atrás
-                                                    </button>
-                                                </li>
-                                                {new Array(Math.ceil(products.paginate.total / 12)).fill(null).map((_, index) =>
-                                                    <li className="page-item mx-2"
-                                                        key={`page-${index}`}>
-                                                        <button
-                                                            className={`page-link border-primary bg-primary-light border-radius-10 ${!(products) || products.paginate.current_page === index + 1 ? 'bg-primary text-white' : ''}`}
-                                                            onClick={() =>  setState(index + 1)}>
-                                                            {index + 1}
+                                    {isLoading ?
+                                        <p>Cargando información... </p> :
+                                        <div className={"d-flex justify-content-center mt-5"}>
+                                            <nav>
+                                                <ul className="pagination">
+                                                    <li className="page-item mx-2">
+                                                        <button className="page-link bg-primary text-white border-primary border-radius-10"
+                                                                onClick={() =>  setState(1)}>
+                                                            <i className='bx bx-chevrons-left'></i>
                                                         </button>
-                                                    </li>)}
-                                                <li className="page-item mx-2">
-                                                    <button className="page-link bg-primary text-white border-primary border-radius-10"
-                                                            onClick={() =>  setState(products?.paginate.current_page + 1)}>Adelante
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+                                                    </li>
+                                                    <li className="page-item">
+                                                        <button className="page-link border-primary bg-primary text-white border-radius-10"
+                                                                type={"button"}
+                                                                onClick={() => setState(products?.paginate.current_page - 1)}>Atrás
+                                                        </button>
+                                                    </li>
+                                                    {new Array(Math.ceil(products.paginate.total / 12)).fill(null).map((_, index) =>
+                                                        index < (products?.paginate.current_page + 9  ) && index >= products?.paginate.current_page-1 && <li className="page-item mx-2"
+                                                                                                                                                             key={`page-${index}`}>
+                                                            <button
+                                                                className={`page-link border-primary bg-primary-light border-radius-10 ${!(products) || products.paginate.current_page === index + 1 ? 'bg-primary text-white' : ''}`}
+                                                                onClick={() =>  setState(index + 1)}>
+                                                                {index + 1}
+                                                            </button>
+                                                        </li>)}
+                                                    <li className="page-item mx-2">
+                                                        <button className="page-link bg-primary text-white border-primary border-radius-10"
+                                                                onClick={() =>  setState(products?.paginate.current_page + 1)}>Adelante
+                                                        </button>
+                                                    </li>
+                                                    <li className="page-item mx-2">
+                                                        <button className="page-link bg-primary text-white border-primary border-radius-10"
+                                                                onClick={() =>  setState(products?.paginate.last_page)}>
+                                                            <i className='bx bx-chevrons-right'></i>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>}
+                                    <p className={"mt-4"}>Total Productos: {products?.paginate?.total}</p>
                                 </>}
                             <br/>
                         </section>
