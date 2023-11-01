@@ -9,16 +9,17 @@ import {currencyFormatter} from "../../../cross-cutting/utils";
 import useBasketStore from "../../../application/store/use-basket-store";
 import BasketStoreModel from "../../../data/models/basket-store-model";
 import {Product} from "../../../data/models/product-model";
+import {toast} from "react-toastify";
 
 export default function NavbarLogged() {
-    type StateType              = { session : SessionModel, setSession: (data: SessionModel) => void }
-    type ProductBasketType      = ({ id: number, name: string, image: string | undefined, quantity: number })
-    type BasketType             = { basket  : BasketStoreModel, setBasket: (basket: BasketStoreModel) => void }
-    const navigate              = useNavigate();
-    const {pathname}            = useLocation();
-    const {session, setSession} = useLoginStore(state => state as StateType);
-    const {basket, setBasket}   = useBasketStore(state => state) as unknown as BasketType;
-    const {getPlan, checkPermission}             = useSession();
+    type StateType                   = { session : SessionModel, setSession: (data: SessionModel) => void }
+    type ProductBasketType           = ({ id: number, name: string, image: string | undefined, quantity: number })
+    type BasketType                  = { basket  : BasketStoreModel, setBasket: (basket: BasketStoreModel) => void }
+    const navigate                   = useNavigate();
+    const {pathname}                 = useLocation();
+    const {session, setSession}      = useLoginStore(state => state as StateType);
+    const {basket, setBasket}        = useBasketStore(state => state) as unknown as BasketType;
+    const {getPlan, checkPermission} = useSession();
 
     function cleanBasket(products: Product[]): ProductBasketType[] {
         const copySet                 = new Set([...products]) as Set<Product>;
@@ -44,6 +45,19 @@ export default function NavbarLogged() {
         let total = 0;
         products.forEach(x => total+= parseFloat(x.price_a));
         return total;
+    }
+
+    function removeProduct(product: ProductBasketType) {
+        let removed: boolean = false;
+        const newProductsBasket = basket.products.map(x => {
+            if (!removed && x.id === product.id) {
+                removed = true;
+                return undefined;
+            }
+            return ({...x});
+        }).filter(Boolean) as Product[];
+        setBasket({ products: newProductsBasket });
+        if (removed) toast('Producto eliminado del carrito de compras', { type: 'info' });
     }
 
     return (<>
@@ -105,9 +119,15 @@ export default function NavbarLogged() {
 
                         <ul className="dropdown-menu">
                             {cleanBasket(basket.products).map((x, index) =>
-                                <li key={`basket-${index}`} className={"d-flex justify-content-between align-items-center"}>
-                                    <img src={`data:image/png;base64,${x.image}`} alt={"producto"} width={50}/>
-                                    <span className={"dropdown-item"}>{x.quantity} - {x.name}</span>
+                                <li key={`basket-${index}`}>
+                                    <button className="btn d-flex justify-content-between align-items-center"
+                                        onClick={()=> removeProduct(x)}>
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <img src={`data:image/png;base64,${x.image}`} alt={"producto"} width={50}/>
+                                            <span className={"dropdown-item"}>{x.quantity} - {x.name}</span>
+                                        </div>
+                                        <i className='bx bx-trash'></i>
+                                    </button>
                                 </li>
                             )}
                             { basket.products.length > 0 && <li className={"text-center border-top"}>

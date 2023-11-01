@@ -81,8 +81,8 @@ export default function useSession() {
         }
     }
 
-    const getPlan = (): number => (session.plan_prices as { [plan: string]: any })[planPrices[session.role_has_model[0].role_id]];
-    const getNamePlanRole = (): string => namePlanRole[session.role_has_model[0].role_id];
+    const getPlan = (): number => (session.plan_prices as { [plan: string]: any })[planPrices[session?.role_has_model[0]?.role_id]];
+    const getNamePlanRole = (): string => namePlanRole[session?.role_has_model[0]?.role_id];
 
     return {
         planPrices,
