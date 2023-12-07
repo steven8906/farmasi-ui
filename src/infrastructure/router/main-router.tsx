@@ -14,6 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Admin from "../../ui/views/admin/admin";
 import NotFound from "../../ui/views/not-found/not-found";
 import useSession from "../../application/use-cases/use-session";
+import PaymentConfirm from "../../ui/views/payment-confirm/payment-confirm.tsx";
+import Checkout from "../../ui/views/checkout/checkout.tsx";
 
 export default function MainRouter() {
     const { sessionStore } = useSession();
@@ -30,6 +32,8 @@ export default function MainRouter() {
                     <Route path={routesPath.STORE} element={<Layout><Store/></Layout>}/>
                     <Route path={routesPath.SHOP} element={<Layout><Shop/></Layout>}/>
                     <Route path={routesPath.BI} element={<Layout><Bi/></Layout>}/>
+                    <Route path={routesPath.PAYMENT_CONFIRM} element={<Layout><PaymentConfirm/></Layout>}/>
+                    <Route path={routesPath.CHECKOUT} element={<Layout><Checkout/></Layout>}/>
                     {sessionStore.user && sessionStore.user.user === 'System' && <Route path={routesPath.ADMIN} element={<Layout><Admin/></Layout>}/>}
                     <Route path={routesPath.LOGIN} element={<Layout outContainer={true}><Login/></Layout>}/>
                 </Routes>

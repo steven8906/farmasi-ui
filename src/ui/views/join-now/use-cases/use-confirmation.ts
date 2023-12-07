@@ -1,21 +1,14 @@
-import RegisterModel from "../../../../data/models/register-model";
-import {MethodPaymentType} from "../types/method-payment-type";
-import SendPaymentModel from "../../../../data/models/send-payment-model";
 import useJoinNowContext from "./useJoinNowContext";
 import useAppContext from "../../../../application/use-cases/use-app-context";
 import Plans from "../../../../cross-cutting/plans";
 import httpServices from "../../../../application/services/http-services";
-import {Dayjs} from "dayjs";
+import dayjs, {Dayjs} from "dayjs";
 import useLoading from "../../../../application/use-cases/use-loading";
 import {AxiosError, AxiosResponse} from "axios";
 import ResponseModel from "../../../../data/models/response-model";
 import {toast} from "react-toastify";
+import SendConfirmationType from "../../../../data/types/send-confirmation-type.ts";
 
-type SendConfirmationType =
-    RegisterModel
-    & SendPaymentModel
-    & { plan: Plans }
-    & { methodPayment: MethodPaymentType };
 export default function useConfirmation() {
     const {formRegister, methodPayment, sendPayment, setStep} = useJoinNowContext();
     const {plan}                                              = useAppContext();
@@ -28,13 +21,23 @@ export default function useConfirmation() {
             ...sendPayment,
             methodPayment,
             plan: plan as Plans,
-            date: (formRegister.date as Dayjs).format('YYYY-MM-DD')
+            date: (formRegister.date as Dayjs)?.format('YYYY-MM-DD') ?? dayjs().format('YYYY-MM-DD')
         }
 
         httpServices.post<SendConfirmationType, boolean>({action: 'auth/register', data})
             .then(callResponse)
             .catch(callCatch)
             .finally(hide);
+    }
+
+    function getConfirmation(): SendConfirmationType {
+        return {
+            ...formRegister,
+            ...sendPayment,
+            methodPayment,
+            plan: plan as Plans,
+            date: (formRegister.date as Dayjs)?.format('YYYY-MM-DD') ?? dayjs().format('YYYY-MM-DD')
+        };
     }
 
     function callResponse(res: AxiosResponse<ResponseModel<boolean>>): void {
@@ -54,5 +57,6 @@ export default function useConfirmation() {
 
     return {
         sendConfirmation,
+        getConfirmation,
     }
 }

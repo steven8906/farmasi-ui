@@ -21,11 +21,13 @@ export default function SendPayment() {
         setSendPayment,
         methodPayment,
     } = useJoinNowContext();
-    const [isEdit, setIsEdit] = useState<boolean>();
-    const {sendConfirmation}  = useConfirmation();
-    const {config}            = useLoginStore(state => state.session) as unknown as { config: Config };
-    const basket              = useBasketStore(state => (state as unknown as { basket: BasketStoreModel }).basket) as BasketStoreModel;
-    const {getPlan}           = useSession();
+    const [isEdit, setIsEdit]                 = useState<boolean>();
+    const {sendConfirmation, getConfirmation} = useConfirmation();
+    const {config}                            = useLoginStore(state => state.session) as unknown as { config: Config };
+    const basket                              = useBasketStore(state => (state as unknown as {
+        basket: BasketStoreModel
+    }).basket) as BasketStoreModel;
+    const {getPlan}                           = useSession();
     function onChange(ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | SelectChangeEvent>): void {
         const {
             name,
@@ -82,7 +84,7 @@ export default function SendPayment() {
                                                     <img alt={"logo-card"} src={masterCardLogo} width={70}/>
                                                 </div>
                                             </div>
-                                            <CreditCard/>
+                                            <CreditCard dataConfirmation={getConfirmation()}/>
 
                                             <div className={"mt-5 w-50"}>
                                                 <p className={"text-bold"}>Total productos: {currencyFormatter(sum(basket.products))}</p>
@@ -129,10 +131,6 @@ export default function SendPayment() {
                                 <button className={"btn btn-primary font-semi-bold text-white ms-3 px-5"}
                                         type={"button"}
                                         onClick={() => setStep(2)}>Atrás
-                                </button>
-                                <button className={"btn btn-success font-semi-bold text-white ms-3 px-5"}
-                                        type={"submit"}>
-                                    Siguiente
                                 </button>
                             </div>
                         </>}

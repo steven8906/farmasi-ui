@@ -38,7 +38,7 @@ export default function Stepper() {
                             onClick={() => setStep(3)}>
                         <span className={`${step === 3 ? 'text-white' : 'text-primary'} font-bold`}>{ !byRoute ? 3 : 2 }</span>
                     </button>
-                    <p className={"text-primary font-size-12 font-bold mt-3"}>Envio y pago</p>
+                    <p className={"text-primary font-size-12 font-bold mt-3"}>Envío y pago</p>
                 </div>
                 <div className={"text-primary d-flex align-items-center mb-4"}>
                     <span className={"d-none d-lg-inline-block"}>---------</span>
