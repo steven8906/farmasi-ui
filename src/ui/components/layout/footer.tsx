@@ -1,4 +1,8 @@
+import {useNavigate} from "react-router-dom";
+import RoutesPath from "../../../infrastructure/router/routes-path.ts";
+
 export default function Footer() {
+    const navigate = useNavigate();
     return (
         <>
             <footer>
@@ -12,19 +16,29 @@ export default function Footer() {
                     <div className={"container"}>
                         <div className={"row justify-content-between p-3"}>
                             <div className={"col-sm-12 col-md-4 d-flex flex-column"}>
-                                <a href={"#"} className={"text-decoration-none text-dark font-medium"}>POLÍTICAS DE LA COMPAÑÍA</a>
-                                <a href={"#"} className={"text-decoration-none text-dark font-light"}>Políticas y procedimientos</a>
-                                <a href={"#"} className={"text-decoration-none text-dark font-light"}>Política de prueba en animales</a>
+                                <p className={"text-decoration-none text-dark font-medium"}>POLÍTICAS DE LA COMPAÑÍA</p>
+                                <button className={"btn text-decoration-none text-dark font-light"}
+                                    onClick={()=> navigate(RoutesPath.PRIVACY_POLICIES)}>
+                                    Políticas de privacidad ANAUE
+                                </button>
                             </div>
                             <div className={"col-sm-12 col-md-4 d-flex flex-column"}>
-                                <a href={"#"} className={"text-decoration-none text-dark font-medium"}>ACERCA DE LA COMPAÑÍA</a>
-                                <a href={"#"} className={"text-decoration-none text-dark font-light"}>Misión y visión</a>
-                                <a href={"#"} className={"text-decoration-none text-dark font-light"}>Sobre nosotros</a>
+                                <p className={"text-decoration-none text-dark font-medium"}>ACERCA DE LA COMPAÑÍA</p>
+                                <button className={"btn text-decoration-none text-dark font-light"}
+                                        onClick={()=> navigate(RoutesPath.MISSION_VISION)}>
+                                    Misión y visión
+                                </button>
                             </div>
                             <div className={"col-sm-12 col-md-4 d-flex flex-column"}>
-                                <a href={"#"} className={"text-decoration-none text-dark font-medium"}>OPORTUNIDAD Y SOPORTE</a>
-                                <a href={"#"} className={"text-decoration-none text-dark font-light"}>Guía de OporTunadades</a>
-                                <a href={"#"} className={"text-decoration-none text-dark font-light"}>Contáctanos</a>
+                                <p className={"text-decoration-none text-dark font-medium"}>OPERATIVO</p>
+                                <button className={"btn text-decoration-none text-dark font-light"}
+                                        onClick={()=> navigate(RoutesPath.PAYMENT_METHOD)}>
+                                    Método de pago
+                                </button>
+                                <button className={"btn text-decoration-none text-dark font-light"}
+                                        onClick={()=> navigate(RoutesPath.SHIPPING)}>
+                                    Entrega
+                                </button>
                             </div>
                         </div>
                     </div>
